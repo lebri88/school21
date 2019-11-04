@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:28:32 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/03 17:58:39 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/04 14:33:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ void    ft_clean_list(t_list *first)
 {
 	t_list  *temp;
 
-	temp = first;
-	while (temp != NULL)
+	if (first->content)
 	{
-		temp = first->next;
-		first->content_size = 0;
-		ft_free_array(first->content);
-		first->next = NULL;
-		free(first);
-		first = temp;
+		temp = first;
+		while (temp != NULL)
+		{
+			temp = first->next;
+			first->content_size = 0;
+			ft_free_array(first->content);
+			first->next = NULL;
+			free(first);
+			first = temp;
+		}
 	}
 }
 

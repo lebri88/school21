@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 16:25:34 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/03 17:57:21 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/04 19:27:19 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int		ft_fill_list(char **split, t_list *first);
 void	ft_clean_list(t_list *first);//proverit'
 void	ft_free_array(char **arr);//proverit'
 void	ft_fill_content_size(t_list *first);
-void	ft_check_list(t_list *first);//vremennaja ft, SEGFAULT on 1 invalid tetr
+void	ft_check_list(t_list *first);//vremennaja ft
+int		ft_fill_map(t_list *first);
+int		ft_count_side_size(t_list *first);
+//char	**ft_create_map(int size);
+int		ft_place_tetr_hub(int s, char map[s][s], t_list *first, int x, int y);
+//int		ft_place_tetr(cha
 # include <stdio.h>
 #endif
