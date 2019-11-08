@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 16:04:30 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/04 20:24:51 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/08 21:11:23 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ void	ft_paint_map(int s, char map[s][s], int x, int y, char **str)
 	j = 0;
 	res = 0;
 	temp = y;
-	write(1, "@\n", 2);
+//	write(1, "@\n", 2);
 	while (res != 4)
 	{
 		if (str[i][j] != '.' && str[i][j] != '\0')
 		{
-			map[x][y] = str[i][j];
+			map[x + i][y + j] = str[i][j];
 			res++;
 		}
 		j++;
-		y++;
+//		y++;
 		if (str[i][j] == '\0')
 		{
-			x++;
+//			x++;
 			i++;
-			y = temp;
+//			y = temp;
 			j = 0;
 		}
 	}
@@ -56,7 +56,7 @@ void	ft_change_symbol(char **arr, char c)
 	j = 0;
 	while (arr[i])
 	{
-		while (arr[j] != '\0')
+		while (arr[i][j] != '\0')
 		{
 			if (arr[i][j] == '#')
 				arr[i][j] = c;
@@ -78,35 +78,39 @@ int		ft_check_op(int s, char map[s][s], int x, int y, char **str)
 	j = 0;
 	res = 0;
 	temp = y;
-	while (res != 4)
+//	printf("s = %i, x = %i, y = %i, str[i][j] = %c\n", s, x, y, str[i][j]);
+//	write(1, "q\n", 2);
+	while ((x + i) < s && str[i])
 	{
-		if (str[i][j] == '#')
+		if (str[i][j] != '.' && str[i][j] != '\0' && (y + j) < s)
 		{
-			if (map[x][y] != '.' || x >= s || y >= s)
+//			write(1, "b", 1);
+//			printf("i = %i, j = %i, x = %i, y = %i, s = %i\n", i, j, x, y, s);
+			if (map[x + i][y + j] != '.')
 				return (0);
 			res++;
 		}
 		j++;
-		y++;
-		if (j == s)
+		if (str[i][j] == '\0')// || (y + j) == s)
+		{
+			j = 0;
+			i++;
+		}
+/*		y++;
+		if (y == s)
 		{
 			x++;
 			i++;
 			y = temp;
 			j = 0;
-		}
+		}*/
+		if (res == 4)
+			return (1);
 	}
-	return (res);
+	return (0);
 }
-/*
-int		ft_maped_tetr(char **map, char **arr, char c)
-{
-	int		res;
 
-	res = ft_fill_string(*map, *arr, c);
-}*/
-
-void	ft_print_map2(int s, char map[s][s])
+void	ft_print_map(int s, char map[s][s])
 {
 	int		i;
 	int 	j;
@@ -134,13 +138,13 @@ int		ft_opportunity(int s, char map[s][s], int x, int y, t_list *temp)
 	int		ret;
 
 //	write(1, "@\n", 2);
-	ft_print_map2(s, map);
+//	ft_print_map2(s, map);
 	c = (char)temp->content_size;
-	printf("x = %i y = %i letter = %c\n", x, y, c);
+//	printf("x = %i y = %i letter = %c\n", x, y, c);
 	arr = temp->content;
 	ret = ft_check_op(s, map, x, y, arr);
-	printf("ft_opport ret = %i\n", ret);
-	if (ret == 4)
+//	printf("ft_opport ret = %i\n", ret);
+	if (ret == 1)
 	{
 		ft_change_symbol(arr, c);
 		ft_paint_map(s, map, x, y, arr);
