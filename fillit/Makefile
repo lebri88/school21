@@ -6,7 +6,7 @@
 #    By: geliz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 17:11:13 by geliz             #+#    #+#              #
-#    Updated: 2019/11/09 16:44:07 by geliz            ###   ########.fr        #
+#    Updated: 2019/11/09 18:35:15 by geliz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,13 @@ $(NAME): LIB $(OBJ)
 LIB:
 		make -C $(LIB)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+		mkdir -p $(@D)
 		gcc -c $(FLAGS) -I$(HEADERS) $< -o $@
 
 clean:
 		make clean -C $(LIB)
 		rm -rf $(OBJ)
+		rm -rf $(OBJ_DIR)
 
 fclean: clean
 		make fclean -C $(LIB)
