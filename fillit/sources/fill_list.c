@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:28:32 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/04 14:33:41 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/09 18:17:26 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	ft_fill_content_size(t_list *first)
 	}
 }
 
-void    ft_free_array(char **arr)
+void	ft_free_array(char **arr)
 {
-	int     i;
-	int     z;
+	int		i;
+	int		z;
 
 	i = 0;
 	z = 0;
@@ -44,18 +44,19 @@ void    ft_free_array(char **arr)
 	arr = NULL;
 }
 
-void    ft_clean_list(t_list *first)
+void	ft_clean_list(t_list *first)
 {
-	t_list  *temp;
+	t_list	*temp;
 
-	if (first->content)
+	if (first)
 	{
 		temp = first;
 		while (temp != NULL)
 		{
 			temp = first->next;
 			first->content_size = 0;
-			ft_free_array(first->content);
+			if (first->content)
+				ft_free_array(first->content);
 			first->next = NULL;
 			free(first);
 			first = temp;
@@ -63,10 +64,10 @@ void    ft_clean_list(t_list *first)
 	}
 }
 
-int     ft_fill_list(char **tetr, t_list *first)
+int		ft_fill_list(char **tetr, t_list *first)
 {
-	t_list  *temp;
-	t_list  *new;
+	t_list	*temp;
+	t_list	*new;
 
 	if (first->content == NULL)
 	{

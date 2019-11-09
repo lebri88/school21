@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 16:20:10 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/03 17:49:46 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:38:19 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_clean_strings(char temp[4][5])
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (i < 4)
 	{
 		if (temp[i][0] != '#' && temp[i][1] != '#' && temp[i][2] != '#'
-			   && temp[i][3] != '#')
+				&& temp[i][3] != '#')
 			ft_bzero(temp[i], 5);
 		i++;
 	}
@@ -44,6 +44,7 @@ void	ft_clean_cols(char temp[4][5])
 		i++;
 	}
 }
+
 void	ft_create_arr(char temp[4][5], char *buf)
 {
 	int		i;

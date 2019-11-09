@@ -6,63 +6,54 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 14:38:31 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/08 21:31:45 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:35:50 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_opportunity(int s, char map[s][s], int x, int y, t_list *temp);
-void	ft_print_map(int s, char[s][s]);
-int		ft_create_map(int side, t_list *first, int x, int y);
+int		ft_create_map(int side, t_list *first)
+{
+	char	map[side][side];
+	int		i;
+	int		j;
+	int		ret;
 
-void	ft_map_copy(int s, char map[s][s], char temp[s][s])
+	i = 0;
+	j = 0;
+	ret = 0;
+	while (i < side)
+	{
+		while (j < side)
+		{
+			map[i][j] = '.';
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	ret = ft_first_tetr_iter(side, map, first);
+	return (ret);
+}
+
+void	ft_change_symbol(char **arr, char c)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (i < s)
+	while (arr[i])
 	{
-		while (j < s)
+		while (arr[i][j] != '\0')
 		{
-			temp[i][j] = map[i][j];
+			if (arr[i][j] == '#')
+				arr[i][j] = c;
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-}
-
-int		ft_place_tetr_hub(int s, char map[s][s], t_list *first,
-		int x, int y)
-{
-	int		ret;
-	char	tempmap[s][s];
-
-	ret = 0;
-	x = 0;
-	y = 0;
-	ft_map_copy(s, map, tempmap);
-	if (first == NULL)
-	{
-		ft_print_map(s, tempmap);
-		return (1);
-	}
-	while (ret != 1 && x < s)
-	{
-		if (ft_opportunity(s, tempmap, x, y, first) == 1)
-			ret = ft_place_tetr_hub(s, tempmap, first->next, x, y);
-		ft_map_copy(s, map, tempmap);
-		y++;
-		if (y == s)
-		{
-			y = 0;
-			x++;
-		}
-	}
-	return (ret);
 }
 
 int		ft_count_side_size(t_list *first)
@@ -83,40 +74,23 @@ int		ft_count_side_size(t_list *first)
 	return (res);
 }
 
-int		ft_create_map(int side, t_list *first, int x, int y)
-{
-	char	map[side][side];
-	int		i;
-	int		j;
-	int		ret;
-
-	i = 0;
-	j = 0;
-	ret = 0;
-	while (i < side)
-	{
-		while (j < side)
-		{
-			map[i][j] = '.';
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	ret = ft_place_tetr_hub(side, map, first, x, y);
-	return (ret);
-}
-
 int		ft_fill_map(t_list *first)
 {
 	int		side;
 	int		ret;
+	t_list	*temp;
 
 	ret = 0;
 	side = ft_count_side_size(first);
+	temp = first;
+	while (temp)
+	{
+		ft_change_symbol((char **)temp->content, (char)temp->content_size);
+		temp = temp->next;
+	}
 	while (ret != 1)
 	{
-		ret = ft_create_map(side, first, 0, 0);
+		ret = ft_create_map(side, first);
 		if (ret == 0)
 			side++;
 	}

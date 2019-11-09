@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:47:11 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/01 16:29:05 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:37:21 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_check_symbols(char *buf)
 
 int		ft_check_figure(char *buf)
 {
-	int     i;
+	int		i;
 	int		j;
 
 	i = 0;

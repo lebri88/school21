@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 16:25:34 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/08 21:25:42 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:50:39 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include "libft.h"
+
 int		main(int argn, char **argv);
 int		ft_readfile(char *file, t_list *first);
 int		ft_hub(char *buf, t_list *first);
@@ -33,14 +34,18 @@ char	**ft_create_tetr(char temp[4][5]);
 size_t	ft_count_symbols(char temp[4][5]);
 char	*ft_create_string(char temp[4][5], char *str);
 int		ft_fill_list(char **split, t_list *first);
-void	ft_clean_list(t_list *first);//proverit'
-void	ft_free_array(char **arr);//proverit'
+void	ft_clean_list(t_list *first);
+void	ft_free_array(char **arr);
 void	ft_fill_content_size(t_list *first);
-void	ft_check_list(t_list *first);//vremennaja ft
 int		ft_fill_map(t_list *first);
 int		ft_count_side_size(t_list *first);
-//char	**ft_create_map(int size);
-int		ft_place_tetr_hub(int s, char map[s][s], t_list *first, int x, int y);
-//int		ft_place_tetr(cha
-# include <stdio.h>
+void	ft_change_symbol(char **arr, char c);
+int		ft_create_map(int side, t_list *first);
+int		ft_first_tetr_iter(int s, char map[s][s], t_list *first);
+int		ft_place_tetr_hub(int s, char map[s][s], t_list *first, int tmp[2]);
+int		ft_print_map(int s, char map[s][s]);
+void	ft_map_copy(int s, char map[s][s], char temp[s][s]);
+int		ft_opportunity(int s, char map[s][s], int crd[2], t_list *temp);
+int		ft_check_op(int s, char map[s][s], int crd[2], char **str);
+void	ft_paint_map(int s, char map[s][s], int crd[2], char **str);
 #endif
