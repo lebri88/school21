@@ -2,3 +2,5 @@ pft/
 main.dSYM
 .DS_store
 *.o
+*.dSYM
+main
