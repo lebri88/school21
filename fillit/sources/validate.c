@@ -33,10 +33,8 @@ int		ft_readfile(char *file, t_list *first)
 {
 	int		fd;
 	int		res;
-	int		ret;
 	char	buf[20];
 
-	ret = 1;
 	res = 1;
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (0);
