@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 16:05:10 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/17 17:38:45 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_info	*ft_create_info(t_info *in)
 	in->content = 0;
 	return (in);
 }
-/*
+///*
 void	ft_print_list_temp(t_info *info)
 {
 	write(1, "\nminus = ", 9);
@@ -96,7 +96,7 @@ void	ft_print_list_temp(t_info *info)
 	ft_putnbr(info->content);
 	write(1, "\n", 1);
 }
-*/
+//*/
 int		ft_check_cont(t_info *in, va_list ap)
 {
 	if (in->content == 1)
@@ -115,32 +115,15 @@ int		ft_printf(const char *c, ...)
 	res = 0;
 	info = NULL;
 	va_start(ap, c);
-	if (!(info = ft_create_info(info)))
-		return (-1);
 	while (c[i] != '\0')
 	{
+		if (!(info = ft_create_info(info)))
+			return (-1);
 		res = res + ft_print_base(c, i);
 		i = ft_readstring(i, info, c);
 		res = res + ft_check_cont(info, ap);
+//		ft_print_list_temp(info);
 		free (info);
-		if (!(info = ft_create_info(info)))
-			return (-1);
 	}
-//	ft_print_list_temp(info);
 	return (res);
 }
-/*
-int		main(int argn, char **argv)
-{
-	int		i;
-
-	if (argn != 2)
-		return (0);
-	i = ft_printf("1234567890 %.2s, %6s, %-10s", "aaa", "bbb", "ccc");
-//	ft_putstr("\nft_printf_res = ");
-//	ft_putnbr(i);
-//	i = printf("1234567890 %.2s, %6s, %-10s", "aaa", "bbb", "ccc");
-//	ft_putstr("\nprintf_res = ");
-//	ft_putnbr(i);
-	return (0);
-}*/

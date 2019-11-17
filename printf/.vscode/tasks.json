@@ -10,9 +10,9 @@
             "args": [
                 "-g",
                 "${file}",
-                "-L${fileDirname}",
-                "-lftprintf",
-                "-lft",
+                "${fileDirname}/sources/*.c",
+                "${fileDirname}/libft/*.c",
+                "-I${fileDirname}/includes",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

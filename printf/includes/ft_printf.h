@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 16:39:42 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/17 17:19:19 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		ft_size(const char *c, int i, t_info *info);
 int		ft_content(const char *c, int i, t_info *info);
 int		ft_check_cont(t_info *in, va_list ap);
 int		ft_print_string(t_info *in, va_list ap);
+char	*ft_string_null(char *str);
 int		ft_string_flag(t_info *in, int i, int j, char *str);
 void	ft_print_list_temp(t_info *info);
 
