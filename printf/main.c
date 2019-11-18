@@ -22,9 +22,9 @@ int     main(void)
     ft_putnbr(i);
     ft_putchar('\n');
     //*/
-    printf("hello, %s.", "123");
+  /*  printf("hello, %s.", "123");
     ft_putstr("\nprintf = ");
     ft_putnbr(i);
-    ft_putchar('\n');
+    ft_putchar('\n');*/
     return (0);
 }
