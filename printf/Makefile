@@ -15,11 +15,12 @@ FLAGS = -Wall -Wextra -Werror
 HEADERS = ./includes/
 SRC_DIR = ./sources
 SRC = $(SRC_DIR)/hub.c $(SRC_DIR)/checkcont.c $(SRC_DIR)/readkeys.c
+SRC2 = main.c
 OBJ_DIR = ./obj
 LIB = ./libft/
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-.PHONY: clean fclean re
+.PHONY: test clean fclean re
 
 all: $(NAME)
 
@@ -31,6 +32,8 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		mkdir -p $(@D)
 		gcc -c $(FLAGS) -I$(HEADERS) $< -o $@
 
+test:
+		gcc $(FLAGS) -I$(HEADERS) $(SRC2) $(SRC) -L./libft -lft
 clean:
 		make clean -C $(LIB)
 		rm -rf $(OBJ)
@@ -39,5 +42,8 @@ clean:
 fclean: clean
 		make fclean -C $(LIB)
 		rm -f $(NAME)
+
+testclean:
+		rm a.out
 
 re: fclean all

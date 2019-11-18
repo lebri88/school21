@@ -22,7 +22,7 @@ int     main(void)
     ft_putnbr(i);
     ft_putchar('\n');
     //*/
-    i = printf("hello, %s.", NULL);
+    printf("hello, %s.", "123");
     ft_putstr("\nprintf = ");
     ft_putnbr(i);
     ft_putchar('\n');

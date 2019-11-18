@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 
+// rename checkcont.c -> string.c
 void	ft_putstrn(char *str, int j)
 {
 	int		i;
