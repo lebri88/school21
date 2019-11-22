@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:35:15 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/03 17:21:04 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/22 16:39:13 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_readfile(char *file, t_list *first)
 		if (res == 1 && buf[0] != '\n')
 			return (0);
 	}
-	ft_fill_content_size(first);
+	if (ft_fill_content_size(first) == 0)
+		return (0);
 	return (1);
 }

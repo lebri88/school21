@@ -6,7 +6,7 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/27 16:25:34 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/09 17:50:39 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/22 16:40:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_create_string(char temp[4][5], char *str);
 int		ft_fill_list(char **split, t_list *first);
 void	ft_clean_list(t_list *first);
 void	ft_free_array(char **arr);
-void	ft_fill_content_size(t_list *first);
+int		ft_fill_content_size(t_list *first);
 int		ft_fill_map(t_list *first);
 int		ft_count_side_size(t_list *first);
 void	ft_change_symbol(char **arr, char c);

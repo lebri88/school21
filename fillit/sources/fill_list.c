@@ -6,13 +6,13 @@
 /*   By: geliz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:28:32 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/09 18:17:26 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/22 16:40:25 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_fill_content_size(t_list *first)
+int		ft_fill_content_size(t_list *first)
 {
 	int		i;
 
@@ -20,9 +20,12 @@ void	ft_fill_content_size(t_list *first)
 	while (first)
 	{
 		first->content_size = ('A' + i);
+		if (first->content_size > 'Z')
+			return (0);
 		first = first->next;
 		i++;
 	}
+	return (1);
 }
 
 void	ft_free_array(char **arr)
