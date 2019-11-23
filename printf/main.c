@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 17:31:15 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/23 20:01:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ int     main(void)
 {
     int     i;
 ///*
-    i = ft_printf("%09s", "123");
+    i = ft_printf("per %-13.2s, %s, %%%% %s  %c", "0123456789", "123", "013", '\n');
     ft_putstr("\nft_printf = ");
     ft_putnbr(i);
     ft_putchar('\n');
     //*/
-  /*  printf("hello, %s.", "123");
+  ///*  
+    i = printf("per %-13.2s, %s, %%%% %s  %c", "0123456789", "123", "013", '\n');
     ft_putstr("\nprintf = ");
     ft_putnbr(i);
-    ft_putchar('\n');*/
+    ft_putchar('\n');
+    //*/
     return (0);
 }

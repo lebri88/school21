@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 17:38:45 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/23 19:22:03 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ int		ft_print_base(const char *c, int i)
 	int		j;
 
 	j = 0;
-	while (c[i + j] != '\0' && c[i + j] != '%')
+	while (c[i + j] != '\0')// && c[i + j] != '%')
 	{
+		if (c[i + j] == '%' && c[i + j + 1] != '%')
+			return (j);
+		if (c[i + j] == '%')
+			i++;
 		ft_putchar(c[i + j]);
 		j++;
 	}
@@ -59,6 +63,7 @@ t_info	*ft_create_info(t_info *in)
 	in->precision = -1;
 	in->size = 0;
 	in->content = 0;
+	in->error = 0;
 	return (in);
 }
 ///*
@@ -83,13 +88,13 @@ void	ft_print_list_temp(t_info *info)
 	write(1, "\nsize = ", 8);
 	if (info->size == 0)
 		ft_putchar('0');
-	if (info->size == 1)
+	if (info->size == hh)
 		ft_putstr("hh");
-	if (info->size == 2)
+	if (info->size == h)
 		ft_putchar('h');
-	if (info->size == 3)
+	if (info->size == ll)
 		ft_putstr("ll");
-	if (info->size == 4)
+	if (info->size == l)
 		ft_putchar('l');
 //	ft_putnbr(info->size);
 	write(1, "\ncont = ", 8);
@@ -97,12 +102,6 @@ void	ft_print_list_temp(t_info *info)
 	write(1, "\n", 1);
 }
 //*/
-int		ft_check_cont(t_info *in, va_list ap)
-{
-	if (in->content == 1)
-		return (ft_print_string(in, ap));
-	return (0);
-}
 
 int		ft_printf(const char *c, ...)
 {
@@ -121,7 +120,7 @@ int		ft_printf(const char *c, ...)
 			return (-1);
 		res = res + ft_print_base(c, i);
 		i = ft_readstring(i, info, c);
-		res = res + ft_check_cont(info, ap);
+		res = res + ft_print_content(info, ap);
 //		ft_print_list_temp(info);
 		free (info);
 	}

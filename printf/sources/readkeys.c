@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 15:25:36 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/23 15:26:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		ft_content(const char *c, int i, t_info *in)
 {
+	if (c[i] == 'c')
+		in->content = char_;
 	if (c[i] == 's')
-	{
-		in->content = 1;
+		in->content = str_;
+	if (c[i] ==  'p')
+		in->content = ptr_;
+	if (in->content != 0)
 		i++;
-		return (i);
-	}
 	return (i);
 }
 
@@ -28,17 +30,17 @@ int		ft_size(const char *c, int i, t_info *in)
 	if (in->size == 0)
 	{
 		if (c[i] == 'h' && c[i + 1] == 'h')
-			in->size = 1;
+			in->size = hh;
 		if (c[i] == 'h' && in->size == 0)
-			in->size = 2;
+			in->size = h;
 		if (c[i] == 'l' && c[i + 1] == 'l')
-			in->size = 3;
+			in->size = ll;
 		if (c[i] == 'l' && in->size == 0)
-			in->size = 4;
+			in->size = l;
 	}
-	if (in->size == 1 || in->size == 3)
+	if (in->size == hh || in->size == ll)
 		return (i + 2);
-	if (in->size == 2 || in->size == 4)
+	if (in->size == h || in->size == l)
 		return (i + 1);
 	return (i);
 }

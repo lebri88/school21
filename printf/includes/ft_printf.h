@@ -6,12 +6,19 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 17:19:19 by geliz            ###   ########.fr       */
+/*   Updated: 2019/11/23 20:07:36 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# define hh -10
+# define h -11
+# define ll -12
+# define l -13
+# define char_ -14
+# define str_ -15
+# define ptr_ -16
 # include <unistd.h>
 # include <stdarg.h>
 # include <string.h>
@@ -30,6 +37,7 @@ typedef struct		s_info
 	int			precision;
 	int			size;
 	int			content;
+	int			error;
 }					t_info;
 
 int		ft_printf(const char *c, ...);
@@ -41,11 +49,14 @@ int		ft_width(const char *c, int i, t_info *info);
 int		ft_precision(const char *c, int i, t_info *info);
 int		ft_size(const char *c, int i, t_info *info);
 int		ft_content(const char *c, int i, t_info *info);
-int		ft_check_cont(t_info *in, va_list ap);
-int		ft_print_string(t_info *in, va_list ap);
+int		ft_print_content(t_info *in, va_list ap);
+char    *ft_apply_info_to_string(t_info *in, va_list ap);
 char	*ft_string_null(char *str);
-int		ft_string_flag(t_info *in, int i, int j, char *str);
-void	ft_print_list_temp(t_info *info);
+char    *ft_precision_to_string(t_info *in, char *str, int prec);
+char    *ft_width_to_string(t_info *in, char *str);
+char    *ft_width_with_minus(t_info *in, char *str, char *ret);
+char    *ft_width_without_minus(t_info *in, char *str, char *ret);
+char	*ft_apply_info_to_char(t_info *in, va_list ap);
 
 # include <stdio.h>
 #endif

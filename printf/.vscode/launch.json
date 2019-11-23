@@ -4,7 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
+        /*{
             "name": "gcc build and debug active file",
             "type": "cppdbg",
             "request": "launch",
@@ -24,6 +24,19 @@
             ],
             "preLaunchTask": "gcc build active file",
             "miDebuggerPath": "/usr/bin/gdb"
-        }
+        }*/
+        {
+			"name": "clang build and debug active file",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}/${fileBasenameNoExtension}",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "clang build active file"
+		}
     ]
 }

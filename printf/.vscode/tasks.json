@@ -3,7 +3,7 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-       /* {
+       {
             "type": "shell",
             "label": "clang build active file",
             "command": "gcc",
@@ -20,10 +20,10 @@
                 "cwd": ""
             },
             "problemMatcher": [
-                "gcc"
+                "$gcc"
             ]
-        },*/
-        {
+        },
+        /*{
             "type": "shell",
             "label": "gcc build active file",
             "command": "/usr/bin/gcc",
@@ -43,6 +43,6 @@
                 "$gcc"
             ],
             "group": "build"
-        }
+        }*/
     ]
 }
