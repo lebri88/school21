@@ -6,11 +6,12 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/23 19:22:03 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/02 17:43:04 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 int		ft_print_base(const char *c, int i)
 {

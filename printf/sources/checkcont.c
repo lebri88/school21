@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/24 17:50:59 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/02 17:51:55 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,17 @@ int		ft_print_string_and_check_null(t_info *in, char *str)
 {
 	int		ret;
 
-	ret = 0;
 	if (!str)
 		return (0);
-	if (in->content == str_)
+	if (in->content == char_null_)
+		return (ft_print_char_null_with_width(in, str));
+	else
 	{
-		ft_putstr(str);
 		ret = ft_strlen(str);
+		write(1, str, ret);
 		free(str);
 		return (ret);
 	}
-	if (in->width < 1)
-		in->width = 1;
-	while (in->width > 0)
-	{
-		ft_putchar(*str);
-		str++;
-		in->width--;
-		ret++;
-	}
-	return (ret);
 }
 
 char	*ft_apply_info_to_char(t_info *in, va_list ap)
@@ -48,7 +39,9 @@ char	*ft_apply_info_to_char(t_info *in, va_list ap)
 	if (!(temp = ft_strnew(1)))
 		in->error = 1;
 	temp[0] = c;
-	if (in->width > 1)
+	if (c == '\0')
+		in->content = char_null_;
+	if (in->width > 1 && c != '\0')
 	{
 		ret = ft_width_to_string(in, temp);
 		free(temp);
@@ -90,6 +83,8 @@ int		ft_print_content(t_info *in, va_list ap)
 		str = ft_apply_info_to_string(in, ap);
 	if (in->content == char_)
 		str = ft_apply_info_to_char(in, ap);
+	if (in->content == int_)
+		str = ft_apply_info_to_int(in, ap);
 	len = ft_print_string_and_check_null(in, str);
 	return (len);
 }

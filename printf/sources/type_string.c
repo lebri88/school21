@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 17:12:42 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/24 17:52:06 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/02 20:05:05 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ char    *ft_width_without_minus(t_info *in, char *str, char *ret)
     {
         ret[i] = c;
         i++;
-  //      if (i == in->width - (int)len && str[0] == '\0')
-   //         ret[i] = '\0';
     }
     len = 0;
     while (str[len] != '\0')
@@ -52,11 +50,6 @@ char    *ft_width_with_minus(t_info *in, char *str, char *ret)
         ret[i] = str[i];
         i++;
     }
- /*   if (str[0] == '\0' && str[1] == '\0')
-    {
-        ret[i] = '\0';
-        i++;
-    }*/
     while (i < in->width)
     {
         ret[i] = c;
@@ -68,13 +61,14 @@ char    *ft_width_with_minus(t_info *in, char *str, char *ret)
 char    *ft_width_to_string(t_info *in, char *str)
 {
     char    *ret;
-    int     len;
+ //   int     len;
 
-    len = (int)ft_strlen(str);
-    if (len > in->width)
+  //  len = (int)ft_strlen(str);
+  /*  if (len > in->width)
         ret = ft_strnew(len);
     else
-        ret = ft_strnew(in->width);
+        ret = ft_strnew(in->width);*/
+    ret = ft_strnew(in->width);
     if (!ret)
     {
         in->error = 1;

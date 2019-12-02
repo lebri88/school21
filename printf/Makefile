@@ -6,7 +6,7 @@
 #    By: geliz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 17:11:13 by geliz             #+#    #+#              #
-#    Updated: 2019/11/24 16:18:12 by geliz            ###   ########.fr        #
+#    Updated: 2019/12/02 20:28:42 by geliz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 HEADERS = ./includes/
 SRC_DIR = ./sources
-SRC = $(SRC_DIR)/hub.c $(SRC_DIR)/checkcont.c $(SRC_DIR)/readkeys.c $(SRC_DIR)/type_string.c
+SRC = $(SRC_DIR)/hub.c $(SRC_DIR)/checkcont.c $(SRC_DIR)/readkeys.c $(SRC_DIR)/type_string.c \
+	  $(SRC_DIR)/type_null_char_with_width.c $(SRC_DIR)/type_int.c
 SRC2 = main.c
 OBJ_DIR = ./obj
 LIB = ./libft/

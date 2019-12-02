@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/23 20:07:36 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/02 17:43:42 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # define ll -12
 # define l -13
 # define char_ -14
+# define char_null_ -140
 # define str_ -15
 # define ptr_ -16
+# define int_ -17
 # include <unistd.h>
 # include <stdarg.h>
 # include <string.h>
@@ -57,6 +59,10 @@ char    *ft_width_to_string(t_info *in, char *str);
 char    *ft_width_with_minus(t_info *in, char *str, char *ret);
 char    *ft_width_without_minus(t_info *in, char *str, char *ret);
 char	*ft_apply_info_to_char(t_info *in, va_list ap);
+int     ft_print_char_null_with_width(t_info *in, char *str);
+int     ft_char_null_width_minus(t_info *in);
+int     ft_char_null_width_plus(t_info *in);
+char    *ft_apply_info_to_int(t_info *in, va_list ap);
 
 # include <stdio.h>
 #endif
