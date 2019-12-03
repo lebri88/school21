@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 17:12:42 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/02 20:05:05 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/03 16:47:53 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,7 @@ char    *ft_width_with_minus(t_info *in, char *str, char *ret)
 char    *ft_width_to_string(t_info *in, char *str)
 {
     char    *ret;
- //   int     len;
 
-  //  len = (int)ft_strlen(str);
-  /*  if (len > in->width)
-        ret = ft_strnew(len);
-    else
-        ret = ft_strnew(in->width);*/
     ret = ft_strnew(in->width);
     if (!ret)
     {

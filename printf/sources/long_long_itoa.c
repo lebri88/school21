@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   long_long_itoa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/20 15:02:30 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 17:20:37 by geliz            ###   ########.fr       */
+/*   Created: 2019/12/03 18:27:56 by geliz             #+#    #+#             */
+/*   Updated: 2019/12/03 18:28:55 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static size_t	ft_intlen(int n)
+static size_t	ft_intlen(long long int n)
 {
 	size_t	i;
 	long	z;
@@ -34,9 +34,9 @@ static size_t	ft_intlen(int n)
 	return (i);
 }
 
-static char		*ft_convert(char *str, int n, size_t i)
+static char		*ft_convert(char *str, long long int n, size_t i)
 {
-	long	z;
+	long long int	z;
 
 	z = n;
 	if (z < 0)
@@ -55,7 +55,7 @@ static char		*ft_convert(char *str, int n, size_t i)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char			*ft_long_long_itoa(long long int n)
 {
 	char	*str;
 	size_t	i;
