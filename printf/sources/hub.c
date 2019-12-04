@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 20:03:47 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/04 17:24:28 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_info	*ft_create_info(t_info *in)
 	in->size = 0;
 	in->content = 0;
 	in->unsign = 0;
+	in->base = 'd';
 	in->error = 0;
 	return (in);
 }

@@ -1,68 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsigned_long_long_itoa.c                          :+:      :+:    :+:   */
+/*   ll_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:27:56 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 20:10:10 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/04 17:10:29 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	ft_intlen(unsigned long long int n)
+static size_t	ft_intlen(long long int n)
 {
-	size_t	i;
-	long	z;
+	int		i;
 
 	i = 0;
-	z = n;
-	if (z < 0)
+	if (n < 0)
 	{
 		i++;
-		z = z * -1;
+		n = n * -1;
 	}
-	if (z == 0)
+	if (n == 0)
 		i = 1;
-	while (z > 0)
+	while (n > 0)
 	{
-		z = z / 10;
+		n = n / 10;
 		i++;
 	}
 	return (i);
 }
 
-static char		*ft_convert(char *str, unsigned long long int n, size_t i)
+static char		*ft_convert(char *str, long long int n, size_t i)
 {
-	long long int	z;
-
-	z = n;
-	if (z < 0)
+	if (n < 0)
 	{
-		z = z * -1;
+		n = n * -1;
 		str[0] = '-';
 	}
-	if (z == 0)
+	if (n == 0)
 		str[0] = '0';
-	while (z > 0)
+	while (n > 0)
 	{
-		str[i] = z % 10 + '0';
-		z = z / 10;
+		str[i] = n % 10 + '0';
+		n = n / 10;
 		i--;
 	}
 	return (str);
 }
 
-char			*ft_unsigned_long_long_itoa(unsigned long long int n)
+char			*ft_ll_itoa(long long int n)
 {
 	char	*str;
-	size_t	i;
+	int		i;
 
 	i = ft_intlen(n);
-	str = ft_strnew(i);
-	if (str == NULL)
+	if (!(str = ft_strnew(i)))
 		return (NULL);
 	str = ft_convert(str, n, (i - 1));
 	return (str);

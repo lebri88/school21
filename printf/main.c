@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 19:41:12 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/04 19:59:46 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int     main(void)
 {
     int     i;
 ///*
-    i = ft_printf("% 05i", 43);
+    i = ft_printf("%#5.0o", 0);
     write(1, "\n", 1);
-    printf("%.0li", 22337203685477);
+    printf("%o", 43);
 //    ft_putstr("\nft_printf = ");
  //  ft_putnbr(i);
 //    ft_putchar('\n');

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:41:58 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 20:20:08 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/04 20:03:37 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,22 @@ char	*ft_precision_to_int_with_minus(t_info *in, char *ret, int len)
 	return (temp);
 }
 
+int		ft_is_nmb_zero(char *ret)
+{
+	int		z;
+
+	
+	if (ft_strlen(ret) > 1)
+		return (0);
+	z = ft_atoi(ret);
+	if (z == 0)
+	{
+		ft_strdel(&ret);
+		return (1);
+	}
+	return (0);
+}
+
 char	*ft_precision_to_int(t_info *in, char *ret, int len)
 {
 	char		*temp;
@@ -91,22 +107,18 @@ char	*ft_precision_to_int(t_info *in, char *ret, int len)
 char    *ft_apply_info_to_int(t_info *in, va_list ap)
 {
     char			*ret;
-    long int		nmb;
     int				len;
 
-    if (in->size != 0)
-		return (ft_apply_info_to_sized_int(in, ap));
-	if (in->unsign == 1)
-		return (ft_apply_info_to_unsigned_int(in, ap));
-	nmb = va_arg(ap, int);
-    if (!(ret = ft_itoa(nmb)))
-        return (NULL);
-    len = (int)ft_strlen(ret);
+    if (!(ret = ft_convert_int_to_str(in, ap)))
+		return (NULL);
 	if (in->precision != -1)
 		in->zero = 0;
+	if (ret != NULL && in->octotorp == 1 && in->base != 'd')
+		ret = ft_octotorp_to_int(in, ret);
+	len = (int)ft_strlen(ret);
     if (in->precision > len)
 		ret = ft_precision_to_int(in, ret, len);
-	if (in->precision == 0 && nmb == 0)
+	if (in->precision == 0 && in->base == 'd' && (ft_is_nmb_zero(ret) == 1))
 		ret = ft_strnew(0);
 	if (ret != NULL && in->plus == 1)
 		ret = ft_plus_to_int(ret);
