@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 17:24:30 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 20:14:22 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_apply_info_to_char(t_info *in, va_list ap)
 	char	c;
 	char	*temp;
 	char	*ret;
-	
+
 	c = va_arg(ap, int);
 	if (!(temp = ft_strnew(1)))
 		in->error = 1;
@@ -50,27 +50,27 @@ char	*ft_apply_info_to_char(t_info *in, va_list ap)
 	return (temp);
 }
 
-char    *ft_apply_info_to_string(t_info *in, va_list ap)
+char	*ft_apply_info_to_string(t_info *in, va_list ap)
 {
-    char    *str;
+	char	*str;
 	char	*ret;
-    size_t  j;
+	size_t	j;
 
-    str = va_arg(ap, char *);
-    if (str == NULL)
-        {
-            if (!(str = ft_string_null(str)))
-                in->error = 1;
-        }
-    j = ft_strlen(str);
-    if (in->precision >= 0 && (int)j > in->precision)
-        str = ft_precision_to_string(in, str, in->precision);
-    j = ft_strlen(str);
-    if (in->width >= 0 && (int)j < in->width)
-        str = ft_width_to_string(in, str);
+	str = va_arg(ap, char *);
+	if (str == NULL)
+	{
+		if (!(str = ft_string_null(str)))
+			in->error = 1;
+	}
+	j = ft_strlen(str);
+	if (in->precision >= 0 && (int)j > in->precision)
+		str = ft_precision_to_string(in, str, in->precision);
+	j = ft_strlen(str);
+	if (in->width >= 0 && (int)j < in->width)
+		str = ft_width_to_string(in, str);
 	if (!(ret = ft_strdup(str)))
 		in->error = 1;
-    return (ret);    
+	return (ret);
 }
 
 int		ft_print_content(t_info *in, va_list ap)
@@ -85,8 +85,8 @@ int		ft_print_content(t_info *in, va_list ap)
 		str = ft_apply_info_to_char(in, ap);
 	if (in->content == int_)
 		str = ft_apply_info_to_int(in, ap);
-//	if (in->content == ptr_)
-//		str = ft_apply_info_to_ptr(in, ap);
+	//	if (in->content == ptr_)
+	//		str = ft_apply_info_to_ptr(in, ap);
 	len = ft_print_string_and_check_null(in, str);
 	return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:27:56 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 17:37:51 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 20:16:40 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char		*ft_convert_hexadec(unsigned long long int n, int i)
 		str[0] = '0';
 		return (str);
 	}
-	i = i + 1;
+//	i = i + 1;
 	while (n > 0)
 	{
 		str[i] = n % 16 + '0';
@@ -113,6 +113,7 @@ char			*ft_unsigned_ll_itoa_base(unsigned long long int n, int base)
 		str = ft_convert_octal(n, i);
 	if (base == 'x' || base == 'X')
 		str = ft_convert_hexadec(n, i);
+	i = 0;
 	if (base == 'X')
 	{
 		while (str[i] != '\0')

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 17:24:28 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 20:32:05 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int		ft_readstring(int i, t_info *info, const char *c)
 			if ((i = ft_precision(c, i, info)) == 0)
 				return (-1);
 			i = ft_size(c, i, info);
-			i = ft_content(c, i, info);
+			if ((i = ft_content(c, i, info)) == 0)
+				return (-1);
 		}
 	}
 	return (i);
@@ -86,7 +87,8 @@ int		ft_printf(const char *c, ...)
 		if (!(info = ft_create_info(info)))
 			return (-1);
 		res = res + ft_print_base(c, i);
-		i = ft_readstring(i, info, c);
+		if ((i = ft_readstring(i, info, c)) == -1)
+			return (0);
 		res = res + ft_print_content(info, ap);
 		free (info);
 	}

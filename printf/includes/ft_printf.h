@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 18:39:31 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 19:17:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ char	*ft_convert_unsigned_sized_h_hh_int_to_str(t_info *in, va_list ap);
 char	*ft_convert_sized_h_hh_int_to_str(t_info *in, va_list ap);
 char	*ft_unsigned_ll_itoa_base(unsigned long long int n, int base);
 char	*ft_ll_itoa(long long int n);
-char	*ft_precision_to_int(t_info *in, char *ret, int len);
+char	*ft_precision_to_int(t_info *in, char *ret);
 char	*ft_precision_to_int_with_minus(t_info *in, char *ret, int len);
-int		ft_is_nmb_zero(char *ret);
+int		ft_is_nmb_zero(t_info *in, char *ret);
 char	*ft_plus_to_int(char *ret);
 char	*ft_space_to_int(t_info *in, char *ret);
 char	*ft_width_to_int(t_info *in, char *ret);
@@ -84,6 +84,9 @@ char	*ft_width_with_zero_to_int(t_info *in, char *ret);
 char	*ft_width_with_space_to_int(t_info *in, char *ret);
 char	*ft_apply_info_to_oct(t_info *in, va_list ap);
 char	*ft_octotorp_to_int(t_info *in, char *ret);
+
+char	*ft_width_with_zero_to_hexadec_int(t_info *in, char *temp, char *ret, int len);
+char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len);
 
 # include <stdio.h>
 #endif

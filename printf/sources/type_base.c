@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:30:04 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 20:11:39 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 20:18:36 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ char	*ft_octotorp_to_X_big(char *str, size_t len)
 	char	*ret;
 	int		i;
 
+	if (len == 1 && str[0] == '0')
+	{
+		ret = ft_strdup(str);
+		ft_strdel(&str);
+		return (ret);
+	}
 	i = 0;
 	if (!(ret = ft_strnew(len + 2)))
 		return (NULL);
@@ -35,6 +41,12 @@ char	*ft_octotorp_to_x_small(char *str, size_t len)
 	char	*ret;
 	int		i;
 
+	if (len == 1 && str[0] == '0')
+	{
+		ret = ft_strdup(str);
+		ft_strdel(&str);
+		return (ret);
+	}
 	i = 0;
 	if (!(ret = ft_strnew(len + 2)))
 		return (NULL);
@@ -48,19 +60,17 @@ char	*ft_octotorp_to_x_small(char *str, size_t len)
 	return (ret);
 }
 
-char	*ft_octotorp_to_o(t_info *in, char *str, size_t len)
+char	*ft_octotorp_to_o(char *str, size_t len)
 {
 	char	*ret;
 	int		i;
 
-	if (in->precision == 0 && len == 1 && str[0] == '0')
+	if (len == 1 && str[0] == '0')
 	{
-		if (!(ret = ft_strnew(0)))
-			return (NULL);
+		ret = ft_strdup(str);
+		ft_strdel(&str);
 		return (ret);
 	}
-	if (len == 1 && str[0] == '0')
-		return (str);
 	i = 0;
 	if (!(ret = ft_strnew(len + 1)))
 		return (NULL);
@@ -80,7 +90,7 @@ char	*ft_octotorp_to_int(t_info *in, char *ret)
 
 	len = ft_strlen(ret);
 	if (in->base == 'o')
-		str = ft_octotorp_to_o(in, ret, len);
+		str = ft_octotorp_to_o(ret, len);
 	if (in->base == 'x')
 		str = ft_octotorp_to_x_small(ret, len);
 	if (in->base == 'X')

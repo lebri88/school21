@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:25:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 19:40:52 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/07 18:59:21 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ char	*ft_width_with_zero_to_int(t_info *in, char *ret)
 	len = ft_strlen(ret);
 	if (!(temp = ft_strnew(in->width)))
 		return (NULL);
+	if ((in->base == 'x' || in->base == 'X') && in->octotorp == 1)
+		return (ft_width_with_zero_to_hexadec_int(in, temp, ret, len));
 	if (ret[0] == '-' || ret[0] == '+' || ret[0] == ' ')
 	{
-		temp[j++] = ret[0];
-		i++;
+		temp[j++] = ret[i++];
 		len--;
 	}
 	while (in->width > j)
