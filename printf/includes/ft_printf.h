@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 19:17:41 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:04:06 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ptr_ -16
 # define int_ -17
 # define oct_ -18
+# define flt_ -19
 # include <unistd.h>
 # include <stdarg.h>
 # include <string.h>
@@ -44,6 +45,24 @@ typedef struct		s_info
 	int			base;
 	int			error;
 }					t_info;
+
+typedef union 		u_float
+{
+	double			d;
+	struct			s_bit
+	{
+		unsigned long int	mantissa	: 52;
+        unsigned long int	exponent	: 11;
+        unsigned int		sign		: 1;
+	}				t_bit;
+}					t_float;
+
+typedef struct		s_db_bit
+{
+	unsigned long int	mant;
+	unsigned long int	exp;
+	unsigned int		s;
+}					t_db_bit;
 
 int		ft_printf(const char *c, ...);
 t_info	*ft_create_info(t_info *in);
@@ -87,6 +106,8 @@ char	*ft_octotorp_to_int(t_info *in, char *ret);
 
 char	*ft_width_with_zero_to_hexadec_int(t_info *in, char *temp, char *ret, int len);
 char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len);
+
+char	*ft_apply_info_to_flt(t_info *in, va_list ap);
 
 # include <stdio.h>
 #endif

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 20:14:22 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 16:49:25 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int		ft_print_content(t_info *in, va_list ap)
 		str = ft_apply_info_to_int(in, ap);
 	//	if (in->content == ptr_)
 	//		str = ft_apply_info_to_ptr(in, ap);
+	if (in->content == flt_)
+		str = ft_apply_info_to_flt(in, ap);
 	len = ft_print_string_and_check_null(in, str);
 	return (len);
 }

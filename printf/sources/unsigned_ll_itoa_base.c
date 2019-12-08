@@ -6,11 +6,32 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:27:56 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 20:16:40 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:15:01 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static char		*ft_convert_binary(unsigned long long int n, int i)
+{
+	char	*str;
+	
+	if (!(str = ft_strnew(i)))
+		return (NULL);
+	i--;
+/*	if (n == 0)
+	{
+		str[0] = '0';
+		return (str);
+	}*/
+	while (n > 0)
+	{
+		str[i] = n % 2 + '0';
+		n = n / 2;
+		i--;
+	}
+	return (str);
+}
 
 static int		ft_intlen(unsigned long long int n, int base)
 {
@@ -23,6 +44,8 @@ static int		ft_intlen(unsigned long long int n, int base)
 		z = 16;
 	if (base == 'd')
 		z = 10;
+	if (base == 'b')
+		z = 2;
 	i = 0;
 	if (n == 0)
 		i = 1;
@@ -104,7 +127,7 @@ char			*ft_unsigned_ll_itoa_base(unsigned long long int n, int base)
 	char	*str;
 	int		i;
 
-	if (base != 'x' && base != 'X' && base != 'o' && base != 'd')
+	if (base != 'x' && base != 'X' && base != 'o' && base != 'd' && base != 'b')
 		return (NULL);
 	i = ft_intlen(n, base);
 	if (base == 'd')
@@ -113,6 +136,8 @@ char			*ft_unsigned_ll_itoa_base(unsigned long long int n, int base)
 		str = ft_convert_octal(n, i);
 	if (base == 'x' || base == 'X')
 		str = ft_convert_hexadec(n, i);
+	if (base == 'b')
+		str = ft_convert_binary(n, i);
 	i = 0;
 	if (base == 'X')
 	{
