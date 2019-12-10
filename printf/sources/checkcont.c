@@ -6,82 +6,89 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 17:42:05 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 16:49:25 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstrn(char *str, int j)
+int		ft_print_string_and_check_null(t_info *in, char *str)
 {
-	int		i;
+	int		ret;
 
-	i = 0;
-	while (i < j && str[i] != '\0')
+	if (!str)
+		return (0);
+	if (in->content == char_null_)
+		return (ft_print_char_null_with_width(in, str));
+	else
 	{
-		ft_putchar(str[i]);
-		i++;
+		ret = ft_strlen(str);
+		write(1, str, ret);
+		free(str);
+		return (ret);
 	}
 }
 
-int		ft_string_flag(t_info *in, int i, int j, char *str)
+char	*ft_apply_info_to_char(t_info *in, va_list ap)
 {
 	char	c;
+	char	*temp;
+	char	*ret;
 
-	c = ' ';
-	if (in->minus == 1)
+	c = va_arg(ap, int);
+	if (!(temp = ft_strnew(1)))
+		in->error = 1;
+	temp[0] = c;
+	if (c == '\0')
+		in->content = char_null_;
+	if (in->width > 1 && c != '\0')
 	{
-		ft_putstrn(str, j);
-		while (in->width > j)
-		{
-			write(1, &c, 1);
-			j++;
-		}
+		ret = ft_width_to_string(in, temp);
+		free(temp);
+		return (ret);
 	}
-	if (in->minus == 0)
-	{
-		if (in->zero == 1)
-			c = '0';
-		while ((in->width - j) > i)
-		{
-			write(1, &c, 1);
-			i++;
-		}
-		ft_putstrn(str, j);
-		j = j + i;
-	}
-	return (j);
+	return (temp);
 }
 
-char	*ft_string_null(char *str)
-{
-	if (!(str = ft_strnew(6)))
-		return (NULL);
-	str[0] = '(';
-	str[1] = 'n';
-	str[2] = 'u';
-	str[3] = 'l';
-	str[4] = 'l';
-	str[5] = ')';
-	return (str);
-}
-
-int		ft_print_string(t_info *in, va_list ap)
+char	*ft_apply_info_to_string(t_info *in, va_list ap)
 {
 	char	*str;
-	int		j;
-	int		i;
+	char	*ret;
+	size_t	j;
 
 	str = va_arg(ap, char *);
 	if (str == NULL)
-		{
-			if (!(str = ft_string_null(str)))
-				return (-1);
-		}
+	{
+		if (!(str = ft_string_null(str)))
+			in->error = 1;
+	}
 	j = ft_strlen(str);
-	if (j > in->precision && in->precision >= 0)
-		j = in->precision;
-	i = 0;
-	j = ft_string_flag(in, i, j, str);
-	return (j);
+	if (in->precision >= 0 && (int)j > in->precision)
+		str = ft_precision_to_string(in, str, in->precision);
+	j = ft_strlen(str);
+	if (in->width >= 0 && (int)j < in->width)
+		str = ft_width_to_string(in, str);
+	if (!(ret = ft_strdup(str)))
+		in->error = 1;
+	return (ret);
+}
+
+int		ft_print_content(t_info *in, va_list ap)
+{
+	char	*str;
+	int		len;
+
+	str = NULL;
+	if (in->content == str_)
+		str = ft_apply_info_to_string(in, ap);
+	if (in->content == char_)
+		str = ft_apply_info_to_char(in, ap);
+	if (in->content == int_)
+		str = ft_apply_info_to_int(in, ap);
+	//	if (in->content == ptr_)
+	//		str = ft_apply_info_to_ptr(in, ap);
+	if (in->content == flt_)
+		str = ft_apply_info_to_flt(in, ap);
+	len = ft_print_string_and_check_null(in, str);
+	return (len);
 }

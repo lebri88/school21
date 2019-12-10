@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 17:31:15 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 18:34:50 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ int     main(void)
 {
     int     i;
 ///*
-    i = ft_printf("%09s", "123");
-    ft_putstr("\nft_printf = ");
-    ft_putnbr(i);
-    ft_putchar('\n');
+    i = ft_printf("%f", 39812376.0);
+    write(1, "\n", 1);
+    // printf("%o", 43);
+//    ft_putstr("\nft_printf = ");
+ //  ft_putnbr(i);
+//    ft_putchar('\n');
     //*/
-    i = printf("hello, %s.", NULL);
+  /*  
+    i = printf("%с", 0);
     ft_putstr("\nprintf = ");
     ft_putnbr(i);
     ft_putchar('\n');
+    */
     return (0);
 }
+ 

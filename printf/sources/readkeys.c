@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/11/17 15:25:36 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/08 16:48:38 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,29 @@
 
 int		ft_content(const char *c, int i, t_info *in)
 {
+	if (c[i] == 'c')
+		in->content = char_;
 	if (c[i] == 's')
+		in->content = str_;
+	if (c[i] ==  'p')
+		in->content = ptr_;
+	if (c[i] == 'i' || c[i] == 'd')
+		in->content = int_;
+	if (c[i] == 'u')
 	{
-		in->content = 1;
-		i++;
-		return (i);
+		in->content = int_;
+		in->unsign = 1;
 	}
+	if (c[i] == 'o' || c[i] == 'x' || c[i] == 'X')
+	{
+		in->content = int_;
+		in->base = (int)c[i];
+	}
+	if (c[i] == 'f' || c[i] == 'd')
+		in->content = flt_;
+	in->content == 0 ? i = 0 : i++;
+//	if (in->content != 0)
+//		i++;
 	return (i);
 }
 
@@ -28,17 +45,17 @@ int		ft_size(const char *c, int i, t_info *in)
 	if (in->size == 0)
 	{
 		if (c[i] == 'h' && c[i + 1] == 'h')
-			in->size = 1;
+			in->size = hh_;
 		if (c[i] == 'h' && in->size == 0)
-			in->size = 2;
+			in->size = h_;
 		if (c[i] == 'l' && c[i + 1] == 'l')
-			in->size = 3;
+			in->size = ll_;
 		if (c[i] == 'l' && in->size == 0)
-			in->size = 4;
+			in->size = l_;
 	}
-	if (in->size == 1 || in->size == 3)
+	if (in->size == hh_ || in->size == ll_)
 		return (i + 2);
-	if (in->size == 2 || in->size == 4)
+	if (in->size == h_ || in->size == l_)
 		return (i + 1);
 	return (i);
 }
