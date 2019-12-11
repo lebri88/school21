@@ -13,7 +13,7 @@ void	ft_summ_strings(char res[310], char temp[310])
 
 		i = 0;
 		ost = 0;
-		i = 310;
+/*		i = 310;
 		printf("res = ");
 		while (i > -1)	
 				printf("%c", res[i--]);
@@ -22,7 +22,7 @@ void	ft_summ_strings(char res[310], char temp[310])
 		while (i > -1)
 				printf("%c", temp[i--]);
 		printf("\n");
-		i = 0;
+		i = 0;*/
 		while (temp[i] != 0)
 		{
 				if (res[i] == 0 && temp[i] != 0)
@@ -53,6 +53,7 @@ void	ft_neg_pow(char temp[310], int pow)
 		int		ost;
 		int		fut_ost;
 		int		tmp;
+		int		zero_ct;
 
 		i = 309;
 		while (i > 0)
@@ -60,7 +61,8 @@ void	ft_neg_pow(char temp[310], int pow)
 		temp[i] = '1';
 		ost = 0;
 		fut_ost = 0;
-		write(1, "HERE", 4);
+		zero_ct = 0;
+//		write(1, "HERE", 4);
 		while (pow > 0)
 		{
 				while (temp[i] != 0)
@@ -83,12 +85,37 @@ void	ft_neg_pow(char temp[310], int pow)
 						temp[i] = fut_ost + '0';
 						fut_ost = 0;
 				}
+//				printf("temp[i] = %c, i = %i\n", temp[i], i);
+				if (temp[i] == '1')
+				{
+//						printf("@@@@@@@");
+						zero_ct++;
+				}
 				pow--;
+//				i = 0;
+//				printf("\nnbr = ");
+//				while (temp[i] != 0)
+//						printf("%c", temp[i++]);
+//				printf("\n");
 				i = 0;
 		}
 		i = 0;
-		while (i < 10)
+		while (temp[i] != 0)
+				i++;
+		while (zero_ct > 0)
+		{
+				temp[i] = '0';
+				i++;
+				zero_ct--;
+		}
+		temp[i] = '.';
+		temp[i + 1] = '0';
+		
+/*		i = 0;
+		printf("zero count = %i\n", zero_ct);
+		while (i < 15)
 				printf("%c", temp[i++]);
+				*/ 
 }
 /*
 EACH TIME FIRST NUMBER OF SQUARE 5 IS 1 (CANNOT BE DELETED TO 2 W/O PROBLEMS) 0.0 is added to final nbr!
@@ -128,15 +155,17 @@ int	main(int argn, char **argv)
 		j = 0;
 		while (res[j] != 0)
 				j++;
+		printf("\nbinary_to_dec = ");
 		while (j >= 0)
 				printf("%c", res[j--]);
 		printf("\n");
-		ft_neg_pow(temp, 4);
+		ft_neg_pow(temp, 10);			/*ft_negative_*/
 		j = 0;
 		while (temp[j] != 0)
 				j++;
+		printf("\nnegative_binary_to_dec = ");
 		while (j >= 0)
-				printf("%c", res[j--]);
+				printf("%c", temp[j--]);
 		printf("\n");
 		return (0);
 }
