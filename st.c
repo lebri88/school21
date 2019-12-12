@@ -30,57 +30,62 @@ void	ft_summ_strings(char res[310], char temp[310])
 }
 
 /*
-SPLIT ft_neg_pow on 2-3 ft somehow
-*/
+   SPLIT ft_neg_pow on 2-3 ft somehow
+ */
+
+int		ft_neg_pow_cycle(char temp[310])
+{
+		int		i;
+		int		ost;
+		int		tmp;
+		int		zero;
+
+		i = 0;
+		ost = 0;
+		zero = 0;
+		while (temp[i] != 0)
+		{
+				tmp = (temp[i] - '0') * 5 + ost;
+				ost = tmp / 10 > 0 ? (tmp / 10) : 0;
+				temp[i] = tmp % 10 + '0';
+				i++;
+		}
+		if (temp[i] == 0 && ost > 0)
+		{
+				temp[i] = ost + '0';
+				ost = 0;
+		}
+		if (temp[i] == '1')
+				zero++;
+		return (zero);
+}
 
 void	ft_neg_pow(char temp[310], int pow)
 {
 
 		int		i;
-		int		ost;
-		int		tmp;
 		int		zero_ct;
 
 		i = 309;
 		while (i > 0)
 				temp[i--] = 0;//ft_bzero;
 		temp[i] = '1';
-		ost = 0;
 		zero_ct = 0;
 		while (pow > 0)
 		{
-				while (temp[i] != 0)
-				{
-						tmp = (temp[i] - '0') * 5 + ost;
-						ost = tmp / 10 > 0 ? (tmp / 10) : 0;
-						temp[i] = tmp % 10 + '0';
-						i++;
-				}
-				if (temp[i] == 0 && ost > 0)
-				{
-					temp[i] = ost + '0';
-					ost = 0;
-				}
-				if (temp[i] == '1')
-						zero_ct++;
-				i = 0;
+				zero_ct = zero_ct + ft_neg_pow_cycle(temp);
 				pow--;
 		}
-		i = 0;
 		while (temp[i] != 0)
 				i++;
-		while (zero_ct > 0)
-		{
-				temp[i] = '0';
-				i++;
-				zero_ct--;
-		}
+		while (zero_ct-- > 0)
+				temp[i++] = '0';
 		temp[i] = '.';
 		temp[i + 1] = '0';
 }
 /*
-EACH TIME FIRST NUMBER OF SQUARE 5 IS 1 (CANNOT BE DELETED TO 2 W/O PROBLEMS) 0.0 is added to final nbr!
-*/
+   EACH TIME FIRST NUMBER OF SQUARE 5 IS 1 (CANNOT BE DELETED TO 2 W/O PROBLEMS) 0.0 is added to final nbr!
+ */
 
 int	main(int argn, char **argv)
 {
@@ -120,7 +125,7 @@ int	main(int argn, char **argv)
 		while (j >= 0)
 				printf("%c", res[j--]);
 		printf("\n");
-		ft_neg_pow(temp, 15);			/*ft_negative_*/
+		ft_neg_pow(temp, 10);			/*ft_negative_*/
 		j = 0;
 		while (temp[j] != 0)
 				j++;
@@ -153,8 +158,8 @@ void ft_power_to_two(char temp[310], int pow)
 				}
 				if (temp[i] == 0 && ost == 1)
 				{
-					temp[i] = '1';
-					ost = 0;
+						temp[i] = '1';
+						ost = 0;
 				}
 				i = 0;
 				pow--;
