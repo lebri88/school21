@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/08 18:04:06 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/20 22:06:00 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,6 @@ typedef union 		u_float
 	}				t_bit;
 }					t_float;
 
-typedef struct		s_db_bit
-{
-	unsigned long int	mant;
-	unsigned long int	exp;
-	unsigned int		s;
-}					t_db_bit;
-
 int		ft_printf(const char *c, ...);
 t_info	*ft_create_info(t_info *in);
 int		ft_print_base(const char *c, int i);
@@ -109,5 +102,11 @@ char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len);
 
 char	*ft_apply_info_to_flt(t_info *in, va_list ap);
 
+char	*ft_apply_exp_to_mantissa(char *temp, int exp);
+char	*ft_negative_power_to_mant(char *mant, int j, int pow);
+void	ft_fill_array_with_zero(char res[310], char temp[310]);
+char	*ft_array_to_string(char arr[310]);
+void	ft_summ_strings(char res[310], char temp[310]);
+char	*ft_add_divis_to_integ(char *integ, char *divis);
 # include <stdio.h>
 #endif

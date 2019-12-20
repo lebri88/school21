@@ -6,20 +6,23 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/08 18:34:50 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/20 22:54:18 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
+#include <float.h>
 
 int     main(void)
 {
     int     i;
+    double  z;
+    z = 1010.0125;
 ///*
-    i = ft_printf("%f", 39812376.0);
+    i = ft_printf("%f", z);
+    printf("\n%f", z);
     write(1, "\n", 1);
-    // printf("%o", 43);
 //    ft_putstr("\nft_printf = ");
  //  ft_putnbr(i);
 //    ft_putchar('\n');

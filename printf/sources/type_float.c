@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:49:38 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/08 19:37:24 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/20 22:17:13 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int		ft_count(char c, int j)
 	return (0);
 }
 
-unsigned long int	ft_binary_str_to_int(char *temp)
+int		ft_binary_str_to_int(char *temp)
 {
 	int		i;
 	int		j;
-	unsigned long int ret;
+	int		ret;
 
 	j = 0;
 	ret = 0;
@@ -47,17 +47,25 @@ unsigned long int	ft_binary_str_to_int(char *temp)
 	return (ret);
 }
 
-char	*ft_binary_str_add_zero(char *temp, int len)
+char	*ft_add_zero_and_hidden_to_mant(char *temp, int exp)
 {
 	char	*ret;
-	int		j;
+	size_t	i;
+	size_t	j;
 
-	ret = ft_strnew(len);
-	j = (int)ft_strlen(temp);
-	while (j > -1)
+	j = 1;
+	ret = ft_strnew(52);
+	ret[0] = exp == -1023 ? '0' : '1';
+	i = ft_strlen(temp);
+	if (i < 51)
 	{
-		ret[len--] = temp[j--];
+		i = 51 - i;
+		while(i-- > 0)
+			ret[j++] = '0';
 	}
+	i = 0;
+	while (temp[i] != '\0')
+		ret[j++] = temp[i++];
 	ft_strdel(&temp);
 	return (ret);
 }
@@ -65,30 +73,16 @@ char	*ft_binary_str_add_zero(char *temp, int len)
 char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 {
 	t_float		d;
-	t_db_bit	*db_bit;
+	int			exp;
+	char		*nbr;
 	char		*temp;
-	char		*temp2;
 
 	d.d = va_arg(ap, double);
-
-	if (!(db_bit = malloc(sizeof(t_db_bit))))
-		return (NULL);
-	temp = ft_unsigned_ll_itoa_base(d.t_bit.mantissa, 'b');
-	//printf("\n%s\n", temp);
-	temp2 = ft_unsigned_ll_itoa_base(d.t_bit.exponent, 'b');
-	db_bit->exp = ft_binary_str_to_int(temp2) - 1023;
-	temp = ft_binary_str_add_zero(temp, (int)db_bit->exp);
-	db_bit->mant = ft_binary_str_to_int(temp);
-	printf("exp = %lu, nmb = %lu\n", db_bit->exp, db_bit->mant);
-//	printf("\n***exp = %lu**\n", db_bit->exp);
-//	printf("\n%s\n", temp);
-//	temp = ft_unsigned_ll_itoa_base(d.t_bit.sign, 'b');
-//	printf("\n%s\n", temp);
-	printf("\n%f", d.d);
-	/*
-	db_bit->mant = (ft_atoi(ft_unsigned_ll_itoa_base(d.t_bit.mantissa, 'b')));
-	db_bit->exp = (ft_atoi(ft_unsigned_ll_itoa_base(d.t_bit.exponent, 'b')));
-	db_bit->s = (ft_atoi(ft_unsigned_ll_itoa_base(d.t_bit.sign, 'b')));
-	printf("\n bin mant = %lu\n bin exp = %lu\n bin s = %u", db_bit->mant, db_bit->exp, db_bit->s);*/
+	nbr = ft_unsigned_ll_itoa_base(d.t_bit.mantissa, 'b');
+	temp = ft_unsigned_ll_itoa_base(d.t_bit.exponent, 'b');
+	exp = ft_binary_str_to_int(temp) - 1023;
+	nbr = ft_add_zero_and_hidden_to_mant(nbr, exp);
+	nbr = ft_apply_exp_to_mantissa(nbr, exp);
+	printf("\nnbr = %s\n", nbr);
 	return (NULL);
 } 
