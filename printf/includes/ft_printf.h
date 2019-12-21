@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/20 22:06:00 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:01:32 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,7 @@ void	ft_fill_array_with_zero(char res[310], char temp[310]);
 char	*ft_array_to_string(char arr[310]);
 void	ft_summ_strings(char res[310], char temp[310]);
 char	*ft_add_divis_to_integ(char *integ, char *divis);
+
+char	*ft_keys_width_prec_to_float(t_info *in, char *nbr);
 # include <stdio.h>
 #endif

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:41 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/20 22:53:28 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:05:05 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ char	*ft_apply_exp_to_mantissa(char *mant, int pow)
 		}
 		integ = ft_array_to_string(res);
 		divis = ft_negative_power_to_mant(mant, j, pow);
-		integ = ft_add_divis_to_integ(integ, divis);
+		return (ft_add_divis_to_integ(integ, divis));
 		printf("\n n = %s", integ);
-		return (NULL);
+	//	return ();
 //		return(ft_add_divis_to_integ(integ, divis));
 }
 /*		j = 0;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: geliz <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: geliz <geliz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 17:11:13 by geliz             #+#    #+#              #
-#    Updated: 2019/12/07 19:10:19 by geliz            ###   ########.fr        #
+#    Updated: 2019/12/21 18:22:11 by geliz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRC_DIR = ./sources
 SRC = $(SRC_DIR)/hub.c $(SRC_DIR)/checkcont.c $(SRC_DIR)/readkeys.c $(SRC_DIR)/type_string.c \
 	  $(SRC_DIR)/type_null_char_with_width.c $(SRC_DIR)/type_int.c $(SRC_DIR)/type_int_width_and_space.c \
 	  $(SRC_DIR)/convert_int_to_str.c $(SRC_DIR)/ll_itoa.c $(SRC_DIR)/unsigned_ll_itoa_base.c \
-	  $(SRC_DIR)/type_base.c $(SRC_DIR)/type_int_hexadec.c $(SRC_DIR)/type_ptr.c
+	  $(SRC_DIR)/type_base.c $(SRC_DIR)/type_int_hexadec.c $(SRC_DIR)/type_ptr.c \
+	  $(SRC_DIR)/type_float.c $(SRC_DIR)/type_float_mant_count.c $(SRC_DIR)/type_float_neg_powers.c \
+	  $(SRC_DIR)/type_float_check_parts.c $(SRC_DIR)/type_float_apply_info.c
 SRC2 = main.c
 OBJ_DIR = ./obj
 LIB = ./libft/

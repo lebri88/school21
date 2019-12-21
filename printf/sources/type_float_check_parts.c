@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 22:05:13 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/20 22:21:43 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/21 17:17:55 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*ft_check_divis(char *divis)
 	size_t	j;
 	char	*ret;
 
+//	printf("\n***divis = %s***", divis);
 	j = ft_strlen(divis);
 	if (j > 0 && j < 6)
 	{

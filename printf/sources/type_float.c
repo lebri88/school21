@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:49:38 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/20 22:17:13 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:20:41 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ char	*ft_add_zero_and_hidden_to_mant(char *temp, int exp)
 	size_t	j;
 
 	j = 1;
-	ret = ft_strnew(52);
+	ret = ft_strnew(53);
 	ret[0] = exp == -1023 ? '0' : '1';
 	i = ft_strlen(temp);
-	if (i < 51)
+	if (i < 52)
 	{
-		i = 51 - i;
+		i = 52 - i;
 		while(i-- > 0)
 			ret[j++] = '0';
 	}
@@ -79,10 +79,14 @@ char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 
 	d.d = va_arg(ap, double);
 	nbr = ft_unsigned_ll_itoa_base(d.t_bit.mantissa, 'b');
+//	printf("old mant = %s, len = %zu", nbr, ft_strlen(nbr));
 	temp = ft_unsigned_ll_itoa_base(d.t_bit.exponent, 'b');
+//	printf("\nexp bin = %s", temp);
 	exp = ft_binary_str_to_int(temp) - 1023;
 	nbr = ft_add_zero_and_hidden_to_mant(nbr, exp);
+//	printf("\nmant = %s, len = %zu, exp = %i\n", nbr, ft_strlen(nbr), exp);
 	nbr = ft_apply_exp_to_mantissa(nbr, exp);
-	printf("\nnbr = %s\n", nbr);
-	return (NULL);
+//	printf("\nnbr = %s\n", nbr);
+	nbr = ft_keys_width_prec_to_float(in, nbr);
+	return (nbr);
 } 

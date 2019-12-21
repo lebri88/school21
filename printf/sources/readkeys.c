@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/08 16:48:38 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/21 18:25:12 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_content(const char *c, int i, t_info *in)
 		in->content = int_;
 		in->base = (int)c[i];
 	}
-	if (c[i] == 'f' || c[i] == 'd')
+	if (c[i] == 'f')
 		in->content = flt_;
 	in->content == 0 ? i = 0 : i++;
 //	if (in->content != 0)
