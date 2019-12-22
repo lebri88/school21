@@ -6,12 +6,12 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 22:05:13 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/21 17:17:55 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/22 17:46:35 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 char	*ft_check_divis(char *divis)
 {
 	size_t	j;
@@ -19,7 +19,7 @@ char	*ft_check_divis(char *divis)
 
 //	printf("\n***divis = %s***", divis);
 	j = ft_strlen(divis);
-	if (j > 0 && j < 6)
+	if (j < 6)
 	{
 		if (!(ret = ft_strnew(6)))
 			return (NULL);
@@ -35,7 +35,7 @@ char	*ft_check_divis(char *divis)
 		return (ret);
 	}
 	return (divis);
-}
+}*/
 
 char	*ft_check_integ(char *integ)
 {
@@ -52,18 +52,24 @@ char	*ft_check_integ(char *integ)
 	return (integ);
 }
 
-char	*ft_add_divis_to_integ(char *integ, char *divis)
+char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, int plus)
 {
 	size_t	i;
 	size_t	j;
 	char	*ret;
 	
 	integ = ft_check_integ(integ);
-	divis = ft_check_divis(divis);
-	if (!(ret = ft_strnew(ft_strlen(integ) + ft_strlen(divis) + 1)))
+//	divis = ft_check_divis(divis);
+	if (sign == 0 && plus == 1)
+		sign = 2;
+	if (sign == 1)
+		plus = 1;
+	if (!(ret = ft_strnew(ft_strlen(integ) + ft_strlen(divis) + 1 + plus)))
 		return (NULL);
 	i = 0;
 	j = 0;
+	if (sign != 0)
+		ret[j++] = sign == 1 ? '-' : '+';
 	while (integ[i] != '\0')
 		ret[j++] = integ[i++];
 	ret[j++] = '.';

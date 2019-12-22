@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   st.c                                               :+:      :+:    :+:   */
+/*   type_float_mant_count.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:41 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/21 18:05:05 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/22 15:46:35 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_fill_array_with_zero(char res[310], char temp[310])
 	}
 }
 
-char	*ft_apply_exp_to_mantissa(char *mant, int pow)
+char	*ft_apply_exp_to_mantissa(char *mant, int pow, int sign, int plus)
 {
 		int		j;
 		char	*integ;
@@ -122,7 +122,7 @@ char	*ft_apply_exp_to_mantissa(char *mant, int pow)
 		}
 		integ = ft_array_to_string(res);
 		divis = ft_negative_power_to_mant(mant, j, pow);
-		return (ft_add_divis_to_integ(integ, divis));
+		return (ft_add_divis_to_integ(integ, divis, sign, plus));
 		printf("\n n = %s", integ);
 	//	return ();
 //		return(ft_add_divis_to_integ(integ, divis));
