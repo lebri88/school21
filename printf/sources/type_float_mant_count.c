@@ -6,13 +6,13 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:41 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/22 15:46:35 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/27 22:06:34 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_array_to_string(char arr[310])
+char	*ft_array_to_string(char arr[1500])
 {
 	int		i;
 	int		j;
@@ -29,7 +29,7 @@ char	*ft_array_to_string(char arr[310])
 	return (ret);
 }
 
-void	ft_summ_strings(char res[310], char temp[310])
+void	ft_summ_strings(char res[1500], char temp[1500])
 {
 		int		i;
 		int		nbr;
@@ -56,7 +56,7 @@ void	ft_summ_strings(char res[310], char temp[310])
 		}
 }
 
-void	ft_power_to_two(char temp[310], int pow)
+void	ft_power_to_two(char temp[1500], int pow)
 {
 		int		i;
 		int		ost;
@@ -87,12 +87,12 @@ void	ft_power_to_two(char temp[310], int pow)
 		}
 }
 
-void	ft_fill_array_with_zero(char res[310], char temp[310])
+void	ft_fill_array_with_zero(char res[1500], char temp[1500])
 {
 	int			j;
 
 	j = 0;
-	while (j < 310)
+	while (j < 1500)
 	{
 		temp[j] = 0;
 		res[j] = 0;
@@ -105,8 +105,8 @@ char	*ft_apply_exp_to_mantissa(char *mant, int pow, int sign, int plus)
 		int		j;
 		char	*integ;
 		char	*divis;
-		char	res[310];
-		char	temp[310];
+		char	res[1500];
+		char	temp[1500];
 
 		ft_fill_array_with_zero(res, temp);
 		j = 0;

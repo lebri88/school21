@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/22 16:24:04 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/27 22:17:30 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define l_ -13
 # define char_ -14
 # define char_null_ -140
+# define L_ -141
 # define str_ -15
 # define ptr_ -16
 # define int_ -17
@@ -111,5 +112,12 @@ char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, int plus);
 
 char	*ft_keys_width_prec_to_float(t_info *in, char *nbr);
 char	*ft_width_to_float(t_info *in, char *str);
+
+char	*ft_precision_float_zero(char *nbr, int i, t_info *in);
+
+char	*ft_precision_more_add_zero(char *nbr, int len, int af_dot, int prec);
+char	*ft_precision_less_cut_str(char *nbr, int len, int prec);
+
+char	*ft_keys_space_to_float(t_info *in, char *nbr);
 # include <stdio.h>
 #endif
