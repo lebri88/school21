@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:49:38 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 20:10:32 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/29 19:04:23 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,32 @@ char	*ft_add_zero_and_hidden_to_mant(char *temp, int exp)
 	return (ret);
 }
 
+char	*ft_check_nan_and_inf(t_info *in, t_float d)
+{
+	char	*ret;
+	char	*temp;
+
+	ret = NULL;
+	if (d.t_bit.exponent == 2047)
+	{
+		if (d.t_bit.mantissa == 0 && d.d == d.d)
+			return (ret = ft_keys_to_inf(in, ret, d.t_bit.sign));
+		else
+		{
+			if (!(temp = ft_strsub("nan", 0, 3)))
+				return (NULL);
+			if (in->width > 3)
+			{
+				ret = ft_width_to_inf_or_nan(in, temp);
+				ft_strdel(&temp);
+				return (ret);
+			}
+			return (temp);
+		}
+	}
+	return (NULL);
+}
+
 char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 {
 	t_float		d;
@@ -78,11 +104,15 @@ char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 	char		*temp;
 
 	d.d = va_arg(ap, double);
+	nbr = ft_check_nan_and_inf(in, d);
+	if (nbr)
+		return (nbr);
 //	printf("\n%i\n", d.t_bit.sign);
 	nbr = ft_unsigned_ll_itoa_base(d.t_bit.mantissa, 'b');
 //	printf("old mant = %s, len = %zu", nbr, ft_strlen(nbr));
 	temp = ft_unsigned_ll_itoa_base(d.t_bit.exponent, 'b');
-//	printf("\nexp bin = %s", temp);
+//	printf("\n\n, mant bit = %s\nexp bin = %s, exp long = %lu, mant long = %lu", nbr, temp, d.t_bit.exponent, d.t_bit.mantissa);
+	//if (d.t_bit.mantissa == 0 && d.t_bit.exponent == )
 	exp = ft_binary_str_to_int(temp) - 1023;
 	nbr = ft_add_zero_and_hidden_to_mant(nbr, exp);
 //	printf("\nmant = %s, len = %zu, exp = %i\n", nbr, ft_strlen(nbr), exp);
@@ -91,4 +121,4 @@ char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 
 	nbr = ft_keys_width_prec_to_float(in, nbr);
 	return (nbr);
-} 
+}

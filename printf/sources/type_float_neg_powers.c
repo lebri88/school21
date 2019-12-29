@@ -6,13 +6,13 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 22:06:34 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/29 19:26:52 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_summ_divis_strings(char res[1500], char temp[1500])
+void	ft_summ_divis_strings(char res[15000], char temp[15000])
 {
 		int		i;
 		int		nbr;
@@ -38,11 +38,11 @@ void	ft_summ_divis_strings(char res[1500], char temp[1500])
 		}
 }
 
-void	ft_reverse_array(char arr[1500])
+void	ft_reverse_array(char arr[15000])
 {
 	int		i;
 	int		j;
-	char	temp[1500];
+	char	temp[15000];
 
 	i = 0;
 	j = 0;
@@ -61,7 +61,7 @@ void	ft_reverse_array(char arr[1500])
 	}
 }
 
-void	ft_neg_pow_cycle(char temp[1500])
+void	ft_neg_pow_cycle(char temp[15000])
 {
 		int		i;
 		int		ost;
@@ -88,7 +88,7 @@ void	ft_neg_pow_cycle(char temp[1500])
 		//return (zero);
 }
 
-void	ft_negative_power(char temp[1500], int pow)
+void	ft_negative_power(char temp[15000], int pow)
 {
 
 		int		i;
@@ -122,8 +122,8 @@ void	ft_negative_power(char temp[1500], int pow)
 char	*ft_negative_power_to_mant(char *mant, int j, int pow)
 {
 		char	*ret;
-		char	res[1500];
-		char	temp[1500];
+		char	res[15000];
+		char	temp[15000];
 //		int		del_me;
 
 //		del_me = 0;

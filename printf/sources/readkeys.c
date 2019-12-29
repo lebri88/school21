@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 22:17:56 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/29 15:42:31 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_size(const char *c, int i, t_info *in)
 	}
 	if (in->size == hh_ || in->size == ll_)
 		return (i + 2);
-	if (in->size == h_ || in->size == l_)
+	if (in->size == h_ || in->size == l_ || in->size == L_)
 		return (i + 1);
 	return (i);
 }

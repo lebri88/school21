@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 22:17:30 by geliz            ###   ########.fr       */
+/*   Updated: 2019/12/29 19:15:56 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ typedef union 		u_float
         unsigned int		sign		: 1;
 	}				t_bit;
 }					t_float;
+
+typedef union		u_lfloat
+{
+	long double		ld;
+	struct			s_lbit
+	{
+		unsigned long int	mantissa	: 64;
+        unsigned long int	exponent	: 15;
+        unsigned int		sign		: 1;	
+	}				t_lbit;
+}					t_lfloat;
 
 int		ft_printf(const char *c, ...);
 t_info	*ft_create_info(t_info *in);
@@ -119,5 +130,13 @@ char	*ft_precision_more_add_zero(char *nbr, int len, int af_dot, int prec);
 char	*ft_precision_less_cut_str(char *nbr, int len, int prec);
 
 char	*ft_keys_space_to_float(t_info *in, char *nbr);
+
+char	*ft_width_to_inf_or_nan(t_info *in, char *str);
+char	*ft_keys_to_inf(t_info *in, char *ret, unsigned int sign);
+
+char	*ft_apply_info_to_flt_long(t_info *in, va_list ap);
+
+int		ft_binary_str_to_int(char *temp);
+
 # include <stdio.h>
 #endif
