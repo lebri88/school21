@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 16:49:38 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 19:04:23 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 20:17:01 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ char	*ft_apply_info_to_flt(t_info *in, va_list ap)
 	exp = ft_binary_str_to_int(temp) - 1023;
 	nbr = ft_add_zero_and_hidden_to_mant(nbr, exp);
 //	printf("\nmant = %s, len = %zu, exp = %i\n", nbr, ft_strlen(nbr), exp);
-	nbr = ft_apply_exp_to_mantissa(nbr, exp, d.t_bit.sign, in->plus);
+	nbr = ft_apply_exp_to_mantissa(nbr, exp, d.t_bit.sign, in);
 //	printf("\nnbr = %s\n", nbr);
 
 	nbr = ft_keys_width_prec_to_float(in, nbr);

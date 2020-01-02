@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 22:05:13 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/22 17:46:35 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 18:03:29 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_check_integ(char *integ)
 	return (integ);
 }
 
-char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, int plus)
+char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, t_info *in)
 {
 	size_t	i;
 	size_t	j;
@@ -60,11 +60,11 @@ char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, int plus)
 	
 	integ = ft_check_integ(integ);
 //	divis = ft_check_divis(divis);
-	if (sign == 0 && plus == 1)
+	if (sign == 0 && in->plus == 1)
 		sign = 2;
 	if (sign == 1)
-		plus = 1;
-	if (!(ret = ft_strnew(ft_strlen(integ) + ft_strlen(divis) + 1 + plus)))
+		in->plus = 1;
+	if (!(ret = ft_strnew(ft_strlen(integ) + ft_strlen(divis) + 1 + in->plus)))
 		return (NULL);
 	i = 0;
 	j = 0;

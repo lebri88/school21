@@ -11,7 +11,7 @@
                 "-g",
                 "${file}",
                 "${fileDirname}/sources/*.c",
-                "${fileDirname}/libft/*.c",
+               // "${fileDirname}/libft/*.c",
                 "-I${fileDirname}/includes",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

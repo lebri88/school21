@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:27:56 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 17:10:29 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 19:45:25 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static size_t	ft_intlen(long long int n)
 	int		i;
 
 	i = 0;
-	if (n < 0)
-	{
-		i++;
-		n = n * -1;
-	}
 	if (n == 0)
 		i = 1;
+	if (n < 0)
+	{
+		i+= 2;
+		n = n / 10 * -1;
+	}
 	while (n > 0)
 	{
 		n = n / 10;
@@ -34,13 +34,16 @@ static size_t	ft_intlen(long long int n)
 
 static char		*ft_convert(char *str, long long int n, size_t i)
 {
-	if (n < 0)
-	{
-		n = n * -1;
-		str[0] = '-';
-	}
+	
 	if (n == 0)
 		str[0] = '0';
+	if (n < 0)
+	{
+		str[0] = '-';
+		str[i] = n % 10 * -1 + '0';
+		n = n / 10 * -1;
+		i--;
+	}
 	while (n > 0)
 	{
 		str[i] = n % 10 + '0';

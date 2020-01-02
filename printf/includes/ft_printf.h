@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 19:15:56 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 19:15:40 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define int_ -17
 # define oct_ -18
 # define flt_ -19
+# define percent_ -20
 # include <unistd.h>
 # include <stdarg.h>
 # include <string.h>
 # include <stdlib.h>
-# include "libft.h"
 
 typedef struct		s_info
 {
@@ -63,7 +63,7 @@ typedef union		u_lfloat
 	long double		ld;
 	struct			s_lbit
 	{
-		unsigned long int	mantissa	: 64;
+		unsigned long long int	mantissa	: 64;
         unsigned long int	exponent	: 15;
         unsigned int		sign		: 1;	
 	}				t_lbit;
@@ -114,12 +114,12 @@ char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len);
 
 char	*ft_apply_info_to_flt(t_info *in, va_list ap);
 
-char	*ft_apply_exp_to_mantissa(char *temp, int exp, int sign, int plus);
+char	*ft_apply_exp_to_mantissa(char *temp, int exp, int sign, t_info *in);
 char	*ft_negative_power_to_mant(char *mant, int j, int pow);
 void	ft_fill_array_with_zero(char res[310], char temp[310]);
 char	*ft_array_to_string(char arr[310]);
 void	ft_summ_strings(char res[310], char temp[310]);
-char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, int plus);
+char	*ft_add_divis_to_integ(char *integ, char *divis, int sign, t_info *in);
 
 char	*ft_keys_width_prec_to_float(t_info *in, char *nbr);
 char	*ft_width_to_float(t_info *in, char *str);
@@ -137,6 +137,21 @@ char	*ft_keys_to_inf(t_info *in, char *ret, unsigned int sign);
 char	*ft_apply_info_to_flt_long(t_info *in, va_list ap);
 
 int		ft_binary_str_to_int(char *temp);
+
+char	*ft_apply_info_to_ptr(t_info *in, va_list ap);
+
+int			ft_atoi(const char *str);
+void	*ft_memset(void *b, int c, size_t len);
+void	ft_putchar(char c);
+char	*ft_strcat(char *s1, const char *s2);
+void	ft_strdel(char **as);
+char	*ft_strdup(const char *src);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strncpy(char *dst, const char *src, size_t len);
+char	*ft_strnew(size_t size);
+size_t	ft_strlen(const char *str);
+char	*ft_strsub(const char *s, unsigned int start, size_t len);
+int		ft_toupper(int c);
 
 # include <stdio.h>
 #endif

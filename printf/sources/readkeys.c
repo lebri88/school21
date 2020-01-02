@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 15:42:31 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 15:55:39 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int		ft_content(const char *c, int i, t_info *in)
 	}
 	if (c[i] == 'f')
 		in->content = flt_;
+	if (c[i] == '%')
+		in->content = percent_;
 	in->content == 0 ? i = 0 : i++;
 //	if (in->content != 0)
 //		i++;

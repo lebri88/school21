@@ -1,39 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hub.c                                              :+:      :+:    :+:   */
+/*   printf_hub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/02 20:39:57 by geliz            ###   ########.fr       */
+/*   Created: 2020/01/02 20:35:25 by geliz             #+#    #+#             */
+/*   Updated: 2020/01/02 20:43:03 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
-
-int		ft_print_base(const char *c, int i)
-{
-	int		j;
-	int		z;
-	char	*str;
-
-	j = 0;
-	while (c[i + j] != '\0')
-	{
-		if (c[i + j] == '%')
-		{
-			str = ft_strsub(c, i, j);
-			write(1, str, j);
-			ft_strdel(&str);
-			return (j);
-		}
-//		ft_putchar(c[i + j]);
-		j++;
-	}
-	return (j);
-}
 
 int		ft_readstring(int i, t_info *info, const char *c)
 {
@@ -55,6 +32,26 @@ int		ft_readstring(int i, t_info *info, const char *c)
 		}
 	}
 	return (i);
+}
+
+int		ft_print_base(const char *c, int i)
+{
+	int		j;
+	char	*str;
+
+	j = 0;
+	while (c[i + j] != '\0')
+	{
+		if (c[i + j] == '%')
+		{
+			str = ft_strsub(c, i, j);
+			write(1, str, j);
+			ft_strdel(&str);
+			return (j);
+		}
+		j++;
+	}
+	return (j);
 }
 
 t_info	*ft_create_info(t_info *in)

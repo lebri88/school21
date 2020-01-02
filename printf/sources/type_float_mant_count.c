@@ -6,13 +6,13 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:41 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 19:26:53 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 18:40:06 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_array_to_string(char arr[15000])
+char	*ft_array_to_string(char arr[20000])
 {
 	int		i;
 	int		j;
@@ -29,7 +29,7 @@ char	*ft_array_to_string(char arr[15000])
 	return (ret);
 }
 
-void	ft_summ_strings(char res[15000], char temp[15000])
+void	ft_summ_strings(char res[20000], char temp[20000])
 {
 		int		i;
 		int		nbr;
@@ -56,7 +56,7 @@ void	ft_summ_strings(char res[15000], char temp[15000])
 		}
 }
 
-void	ft_power_to_two(char temp[15000], int pow)
+void	ft_power_to_two(char temp[20000], int pow)
 {
 		int		i;
 		int		ost;
@@ -87,12 +87,12 @@ void	ft_power_to_two(char temp[15000], int pow)
 		}
 }
 
-void	ft_fill_array_with_zero(char res[15000], char temp[15000])
+void	ft_fill_array_with_zero(char res[20000], char temp[20000])
 {
 	int			j;
 
 	j = 0;
-	while (j < 15000)
+	while (j < 20000)
 	{
 		temp[j] = 0;
 		res[j] = 0;
@@ -100,13 +100,13 @@ void	ft_fill_array_with_zero(char res[15000], char temp[15000])
 	}
 }
 
-char	*ft_apply_exp_to_mantissa(char *mant, int pow, int sign, int plus)
+char	*ft_apply_exp_to_mantissa(char *mant, int pow, int sign, t_info *in)
 {
 		int		j;
 		char	*integ;
 		char	*divis;
-		char	res[15000];
-		char	temp[15000];
+		char	res[20000];
+		char	temp[20000];
 
 		ft_fill_array_with_zero(res, temp);
 		j = 0;
@@ -119,11 +119,11 @@ char	*ft_apply_exp_to_mantissa(char *mant, int pow, int sign, int plus)
 				}
 				j++;
 				pow--;
+				
 		}
 		integ = ft_array_to_string(res);
 		divis = ft_negative_power_to_mant(mant, j, pow);
-		return (ft_add_divis_to_integ(integ, divis, sign, plus));
-		printf("\n n = %s", integ);
+		return (ft_add_divis_to_integ(integ, divis, sign, in));
 	//	return ();
 //		return(ft_add_divis_to_integ(integ, divis));
 }

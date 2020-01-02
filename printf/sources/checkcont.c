@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 19:16:00 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 19:45:37 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,31 @@ char	*ft_apply_info_to_string(t_info *in, va_list ap)
 		in->error = 1;
 	return (ret);
 }
+/*temporary here*/
+
+char	*ft_apply_info_to_percent(t_info *in)
+{
+	char	*ret;
+	char	*temp_space;
+	char	fill;
+
+	if (in->width > 1)
+	{
+		temp_space = ft_strnew(in->width - 1);
+		fill = in->zero == 1 && in->minus != 1 ? '0' : ' ';
+		temp_space = ft_memset(temp_space, fill, in->width - 1);
+		if (in->minus == 1)
+			ret = ft_strjoin("%", temp_space);
+		else
+			ret = ft_strjoin(temp_space, "%");
+		ft_strdel(&temp_space);
+		return (ret);
+	}
+	ret = ft_strsub("%", 0, 1);
+	return (ret);
+}
+
+/*upper part to separate file*/
 
 int		ft_print_content(t_info *in, va_list ap)
 {
@@ -85,12 +110,14 @@ int		ft_print_content(t_info *in, va_list ap)
 		str = ft_apply_info_to_char(in, ap);
 	if (in->content == int_)
 		str = ft_apply_info_to_int(in, ap);
-	//	if (in->content == ptr_)
-	//		str = ft_apply_info_to_ptr(in, ap);
+	if (in->content == ptr_)
+		str = ft_apply_info_to_ptr(in, ap);
 	if (in->content == flt_ && in->size != L_)
 		str = ft_apply_info_to_flt(in, ap);
 	if (in->content == flt_ && in->size == L_)
 		str = ft_apply_info_to_flt_long(in, ap);
+	if (in->content == percent_)
+		str = ft_apply_info_to_percent(in);
 	len = ft_print_string_and_check_null(in, str);
 	return (len);
 }

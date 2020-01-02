@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:41:58 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 20:08:08 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/02 20:08:25 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ char    *ft_apply_info_to_int(t_info *in, va_list ap)
 		ret = ft_precision_to_int(in, ret);
 	if (in->precision == 0 && (ft_is_nmb_zero(in, ret) == 1))
 		ret = ft_strnew(0);
-	if (ret != NULL && in->plus == 1)
+	if (ret != NULL && in->plus == 1 && in->unsign == 0)
 		ret = ft_plus_to_int(ret);
-	if (ret != NULL && in->space == 1)
+	if (ret != NULL && in->space == 1 && in->unsign == 0)
 		ret = ft_space_to_int(in, ret);
 	if (ret != NULL && in->width != -1)
 	    ret = ft_width_to_int(in, ret);
