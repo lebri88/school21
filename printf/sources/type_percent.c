@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_float_apply_plus_space.c                      :+:      :+:    :+:   */
+/*   type_percent.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/27 18:45:42 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 22:25:03 by geliz            ###   ########.fr       */
+/*   Created: 2020/01/03 14:46:25 by geliz             #+#    #+#             */
+/*   Updated: 2020/01/03 14:52:32 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_keys_space_to_float(t_info *in, char *nbr)
+char	*ft_apply_info_to_percent(t_info *in)
 {
-	int		len;
 	char	*ret;
+	char	*temp_space;
+	char	fill;
 
-	ret = NULL;
-	if (nbr[0] == '-')
-		return (nbr);
-	len = (int)ft_strlen(nbr);
-	if (in->plus == 0 && in->space == 1)
+	if (in->width > 1)
 	{
-		if (!(ret = ft_strnew(len + 1)))
+		if (!(temp_space = ft_strnew(in->width - 1)))
 			return (NULL);
-		ret[0] = ' ';
-		ft_strcat(&ret[1], nbr);
-		ft_strdel(&nbr);
+		fill = in->zero == 1 && in->minus != 1 ? '0' : ' ';
+		temp_space = ft_memset(temp_space, fill, in->width - 1);
+		if (in->minus == 1)
+			ret = ft_strjoin("%", temp_space);
+		else
+			ret = ft_strjoin(temp_space, "%");
+		ft_strdel(&temp_space);
 		return (ret);
 	}
-	return (nbr);
+	ret = ft_strsub("%", 0, 1);
+	return (ret);
 }

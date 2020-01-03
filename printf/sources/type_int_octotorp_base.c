@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_base.c                                        :+:      :+:    :+:   */
+/*   type_int_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:30:04 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 20:18:36 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 16:13:46 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_octotorp_to_X_big(char *str, size_t len)
+char	*ft_octotorp_to_x_big(char *str, size_t len)
 {
 	char	*ret;
 	int		i;
@@ -94,6 +94,6 @@ char	*ft_octotorp_to_int(t_info *in, char *ret)
 	if (in->base == 'x')
 		str = ft_octotorp_to_x_small(ret, len);
 	if (in->base == 'X')
-		str = ft_octotorp_to_X_big(ret, len);
+		str = ft_octotorp_to_x_big(ret, len);
 	return (str);
 }

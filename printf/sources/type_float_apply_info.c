@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 17:22:22 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 21:15:58 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 22:25:45 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ char	*ft_precision_to_float(t_info *in, char *nbr)
 	if (in->precision == -1)
 		in->precision = 6;
 	if (in->precision > 0 && in->precision == af_dot)
-		return(nbr);
+		return (nbr);
 	if (in->precision > af_dot)
 		ret = ft_precision_more_add_zero(nbr, len, af_dot, in->precision);
 	if (in->precision > 0 && in->precision < af_dot)
 		ret = ft_precision_less_cut_str(nbr, len, in->precision);
 	return (ret);
-
 }
 
 char	*ft_keys_width_prec_to_float(t_info *in, char *nbr)
@@ -47,12 +46,10 @@ char	*ft_keys_width_prec_to_float(t_info *in, char *nbr)
 
 	ret = nbr;
 	ret = ft_precision_to_float(in, nbr);
-
 	if (ret != NULL && in->width > ((int)ft_strlen(ret) - 1))
 		ret = ft_width_to_float(in, ret);
 	if (ret && in->space == 1 && in->width < ((int)ft_strlen(ret) - 1))
 		ret = ft_keys_space_to_float(in, ret);
-//	printf("\n%s\n", ret);
 	if (ret)
 		return (ret);
 	else

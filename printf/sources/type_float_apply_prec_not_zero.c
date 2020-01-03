@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 17:31:29 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 18:03:36 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 22:26:19 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_precision_round_up_integ_part(char *nbr, int len, int prec)
 	int		i;
 	int		pos;
 	int		ost;
-	
+
 	pos = 0;
 	if (nbr[0] == '-' || nbr[0] == '+')
 		pos = 1;

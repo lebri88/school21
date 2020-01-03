@@ -6,100 +6,103 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 17:12:42 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/03 16:47:53 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 15:57:35 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char    *ft_width_without_minus(t_info *in, char *str, char *ret)
+char	*ft_width_without_minus(t_info *in, char *str, char *ret)
 {
-    int     i;
-    size_t  len;
-    char    c;
+	int		i;
+	char	c;
+	size_t	len;
 
-    i = 0;
-    len = ft_strlen(str);
-    c = ' ';
-    if (in->space == 0 && in->zero == 1)
-        c = '0';
-    while (i < (in->width - (int)len))
-    {
-        ret[i] = c;
-        i++;
-    }
-    len = 0;
-    while (str[len] != '\0')
-    {
-        ret[i] = str[len];
-        len++;
-        i++;
-    }
-    return (ret);
+	i = 0;
+	len = ft_strlen(str);
+	c = in->zero == 1 ? '0' : ' ';
+	while (i < (in->width - (int)len))
+	{
+		ret[i] = c;
+		i++;
+	}
+	len = 0;
+	while (str[len] != '\0')
+	{
+		ret[i] = str[len];
+		len++;
+		i++;
+	}
+	return (ret);
 }
 
-char    *ft_width_with_minus(t_info *in, char *str, char *ret)
+char	*ft_width_with_minus(t_info *in, char *str, char *ret)
 {
-    int     i;
-    char    c;
+	int		i;
+	char	c;
 
-    i = 0;
-    c = ' ';
-    while (str[i] != '\0')
-    {
-        ret[i] = str[i];
-        i++;
-    }
-    while (i < in->width)
-    {
-        ret[i] = c;
-        i++;
-    }
-    return (ret);
+	i = 0;
+	c = ' ';
+	while (str[i] != '\0')
+	{
+		ret[i] = str[i];
+		i++;
+	}
+	while (i < in->width)
+	{
+		ret[i] = c;
+		i++;
+	}
+	return (ret);
 }
 
-char    *ft_width_to_string(t_info *in, char *str)
+char	*ft_width_to_string(t_info *in, char *str)
 {
-    char    *ret;
+	char	*ret;
 
-    ret = ft_strnew(in->width);
-    if (!ret)
-    {
-        in->error = 1;
-        return (NULL);
-    }
-    if (in->minus == 1)
-        ret = ft_width_with_minus(in, str, ret);
-    else
-        ret = ft_width_without_minus(in, str, ret);
-    return (ret);
-}
-
-char    *ft_precision_to_string(t_info *in, char *str, int prec)
-{
-    char    *ret;
-
-    if (prec == 0)
-    {
-        if (!(ret = ft_strnew(0)))
-            in->error = 1;
-        return (ret);
-    }
-    if (!(ret = ft_strsub(str, 0, prec)))
-        in->error = 1;
-    str = NULL;
-    return (ret);
-}
-
-char	*ft_string_null(char *str)
-{
-	if (!(str = ft_strnew(6)))
+	if (!(ret = ft_strnew(in->width)))
 		return (NULL);
-	str[0] = '(';
-	str[1] = 'n';
-	str[2] = 'u';
-	str[3] = 'l';
-	str[4] = 'l';
-	str[5] = ')';
-	return (str);
+	if (in->minus == 1)
+		ret = ft_width_with_minus(in, str, ret);
+	else
+		ret = ft_width_without_minus(in, str, ret);
+	return (ret);
+}
+
+char	*ft_precision_to_string(t_info *in, char *str)
+{
+	char	*ret;
+
+	if (in->precision == 0)
+	{
+		if (!(ret = ft_strnew(0)))
+			return (NULL);
+		return (ret);
+	}
+	if (!(ret = ft_strsub(str, 0, in->precision)))
+		return (NULL);
+	return (ret);
+}
+
+char	*ft_apply_info_to_string(t_info *in, va_list ap)
+{
+	char	*str;
+	char	*ret;
+	size_t	j;
+
+	str = va_arg(ap, char *);
+	if (str == NULL)
+	{
+		if (!(str = ft_strsub("(null)", 0, 6)))
+			return (NULL);
+	}
+	j = ft_strlen(str);
+	if (in->precision >= 0 && (int)j > in->precision)
+		str = ft_precision_to_string(in, str);
+	j = ft_strlen(str);
+	if (in->width >= 0 && (int)j < in->width)
+		str = ft_width_to_string(in, str);
+	if (!(ret = ft_strdup(str)))
+		return (NULL);
+	return (ret);
 }

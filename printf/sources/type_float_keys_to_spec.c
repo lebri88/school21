@@ -6,11 +6,27 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/29 16:35:14 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/29 18:44:24 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 17:27:37 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	*ft_width_to_inf_or_nan(t_info *in, char *str)
+{
+	char	*temp_space;
+	char	*ret;
+
+	if (!(temp_space = ft_strnew(in->width - (int)ft_strlen(str))))
+		return (NULL);
+	temp_space = ft_memset(temp_space, ' ', (in->width - (int)ft_strlen(str)));
+	if (in->minus == 1)
+		ret = ft_strjoin(str, temp_space);
+	else
+		ret = ft_strjoin(temp_space, str);
+	ft_strdel(&temp_space);
+	return (ret);
+}
 
 char	*ft_keys_to_inf(t_info *in, char *ret, unsigned int sign)
 {
@@ -33,20 +49,4 @@ char	*ft_keys_to_inf(t_info *in, char *ret, unsigned int sign)
 		return (ret);
 	}
 	return (temp_inf);
-}
-
-char	*ft_width_to_inf_or_nan(t_info *in, char *str)
-{
-	char	*temp_space;
-	char	*ret;
-
-	if (!(temp_space = ft_strnew(in->width - (int)ft_strlen(str))))
-		return (NULL);
-	temp_space = ft_memset(temp_space, ' ', (in->width - (int)ft_strlen(str)));
-	if (in->minus == 1)
-		ret = ft_strjoin(str, temp_space);
-	else
-		ret = ft_strjoin(temp_space, str);
-	ft_strdel(&temp_space);
-	return (ret);
 }

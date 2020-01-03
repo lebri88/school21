@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 17:30:46 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 17:53:29 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 22:26:00 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_precision_zero_round_up(char *nbr, int i, int pos)
 {
 	int		ost;
 	int		n;
-	
+
 	ost = 0;
 	if (nbr[i] > '4')
 	{

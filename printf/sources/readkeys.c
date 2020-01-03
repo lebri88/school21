@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/02 15:55:39 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 22:04:52 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int		ft_content(const char *c, int i, t_info *in)
 		in->content = char_;
 	if (c[i] == 's')
 		in->content = str_;
-	if (c[i] ==  'p')
+	if (c[i] == 'p')
 		in->content = ptr_;
 	if (c[i] == 'i' || c[i] == 'd')
 		in->content = int_;
-	if (c[i] == 'u')
+	if (c[i] == 'u' || c[i] == 'D')
 	{
 		in->content = int_;
 		in->unsign = 1;
@@ -32,13 +32,11 @@ int		ft_content(const char *c, int i, t_info *in)
 		in->content = int_;
 		in->base = (int)c[i];
 	}
-	if (c[i] == 'f')
+	if (c[i] == 'f' || c[i] == 'F')
 		in->content = flt_;
 	if (c[i] == '%')
 		in->content = percent_;
 	in->content == 0 ? i = 0 : i++;
-//	if (in->content != 0)
-//		i++;
 	return (i);
 }
 
@@ -81,7 +79,7 @@ int		ft_precision(const char *c, int i, t_info *in)
 			if (j == 0)
 				in->precision = 0;
 			else
-			{	
+			{
 				if (!(prec = ft_strsub(c, i, j)))
 					return (0);
 				in->precision = ft_atoi(prec);
@@ -118,24 +116,21 @@ int		ft_width(const char *c, int i, t_info *in)
 
 int		ft_flags(const char *c, int i, t_info *in)
 {
-	if (in->flag == 0)
+	while (c[i] == '-' || c[i] == '+' || c[i] == ' ' ||
+			c[i] == '#' || c[i] == '0')
 	{
-		while (c[i] == '-' || c[i] == '+' || c[i] == ' ' ||
-				c[i] == '#' || c[i] == '0')
-		{
-			if (c[i] == '-')
-				in->minus = 1;
-			if (c[i] == '+')
-				in->plus = 1;
-			if (c[i] == ' ')
-				in->space = 1;
-			if (c[i] == '#')
-				in->octotorp = 1;
-			if (c[i] == '0')
-				in->zero = 1;
-			i++;
-			in->flag = 1;
-		}
+		if (c[i] == '-')
+			in->minus = 1;
+		if (c[i] == '+')
+			in->plus = 1;
+		if (c[i] == ' ')
+			in->space = 1;
+		if (c[i] == '#')
+			in->octotorp = 1;
+		if (c[i] == '0')
+			in->zero = 1;
+		i++;
+		in->flag = 1;
 	}
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/02 20:39:57 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 21:21:33 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,11 @@
 int     main(void)
 {
     int     i;
-    long double  z;
-    char  *c;
-    char  o;
-    char  a;
-
-    o = '1';
-    a = '2';
-    c = &a;
    // c = ft_strnew(1000000);
-    z = 573.924;
 
-    i = ft_printf("1123123123%f", 7.5);
+
+    i = ft_printf("%10.0x", 9439236);
+   i = printf("\n%10.0x", 9439236);
   //  printf("\n%Lf", z);
   /*  printf("\n%2f", INFINITY);
     printf("\n%5f", INFINITY);

@@ -6,10 +6,9 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 18:37:10 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/04 18:25:45 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 16:04:20 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -86,7 +85,7 @@ char	*ft_convert_sized_int_to_str(t_info *in, va_list ap)
 	char					*ret;
 	long int				li_nbr;
 	long long int			lli_nbr;
-	
+
 	if (in->unsign == 1)
 	{
 		ret = ft_convert_unsigned_sized_int_to_str(in, ap);

@@ -6,7 +6,7 @@
 #    By: geliz <geliz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 17:11:13 by geliz             #+#    #+#              #
-#    Updated: 2020/01/02 19:13:14 by geliz            ###   ########.fr        #
+#    Updated: 2020/01/03 17:36:30 by geliz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,11 @@ NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 HEADERS = ./includes/
 SRC_DIR = ./sources
-SRC = $(SRC_DIR)/hub.c $(SRC_DIR)/checkcont.c $(SRC_DIR)/readkeys.c $(SRC_DIR)/type_string.c \
-	  $(SRC_DIR)/type_null_char_with_width.c $(SRC_DIR)/type_int.c $(SRC_DIR)/type_int_width_and_space.c \
-	  $(SRC_DIR)/convert_int_to_str.c $(SRC_DIR)/ll_itoa.c $(SRC_DIR)/unsigned_ll_itoa_base.c \
-	  $(SRC_DIR)/type_base.c $(SRC_DIR)/type_int_hexadec.c $(SRC_DIR)/type_ptr.c \
+SRC = $(SRC_DIR)/ft_printf_hub.c $(SRC_DIR)/check_and_print_content.c $(SRC_DIR)/readkeys.c \
+	  $(SRC_DIR)/type_char.c $(SRC_DIR)/type_string.c $(SRC_DIR)/type_percent.c $(SRC_DIR)/type_ptr.c \
+	  $(SRC_DIR)/type_int.c $(SRC_DIR)/type_int_convert_to_str.c $(SRC_DIR)/type_int_width_and_space.c \
+	  $(SRC_DIR)/type_int_octotorp_base.c $(SRC_DIR)/type_int_hexadec.c \
+	  $(SRC_DIR)/ft_ll_itoa.c $(SRC_DIR)/ft_unsigned_ll_itoa_base.c $(SRC_DIR)/ft_unsigned_ll_itoa_base_hub.c \
 	  $(SRC_DIR)/type_float.c $(SRC_DIR)/type_float_mant_count.c $(SRC_DIR)/type_float_neg_powers.c \
 	  $(SRC_DIR)/type_float_check_parts.c $(SRC_DIR)/type_float_apply_info.c $(SRC_DIR)/type_float_apply_width.c \
 	  $(SRC_DIR)/type_float_apply_prec_zero.c $(SRC_DIR)/type_float_apply_prec_not_zero.c \
@@ -41,14 +42,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@gcc -c $(FLAGS) -I$(HEADERS) $< -o $@
 
 test:
-		gcc $(FLAGS) -I$(HEADERS) $(SRC2) $(SRC) -L./libft -lft
+		gcc $(FLAGS) -I$(HEADERS) $(SRC2) $(SRC)
 clean:
-		make clean -C $(LIB)
 		rm -rf $(OBJ)
 		rm -rf $(OBJ_DIR)
 
 fclean: clean
-		make fclean -C $(LIB)
 		rm -f $(NAME)
 
 testclean:

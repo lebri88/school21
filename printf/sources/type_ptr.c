@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 19:51:29 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/02 15:39:41 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 15:59:20 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_width_to_ptr(t_info *in, char *ret)
 {
 	char					*temp_space;
 	char					*temp_str;
-	
+
 	temp_space = ft_strnew(in->width - (int)ft_strlen(ret));
 	temp_space = ft_memset(temp_space, ' ', (in->width - (int)ft_strlen(ret)));
 	if (!(temp_str = ft_strdup(ret)))
@@ -40,7 +40,8 @@ char	*ft_precision_to_ptr(t_info *in, char *ret)
 	char					*temp_str;
 
 	temp_zero = ft_strnew(in->precision - (int)ft_strlen(ret));
-	temp_zero = ft_memset(temp_zero, '0', (in->precision - (int)ft_strlen(ret)));
+	temp_zero = ft_memset(temp_zero, '0', (in->precision -
+		(int)ft_strlen(ret)));
 	if (!(temp_str = ft_strdup(ret)))
 	{
 		ft_strdel(&ret);

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/22 15:14:12 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/27 21:31:57 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 22:23:08 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_width_without_minus_to_float(t_info *in, char *str)
 	c = in->zero == 1 ? '0' : ' ';
 	if ((count = in->width - len - in->space) < 0)
 		count = 0;
-	ft_memset(&ret[i + in->space], c, count);//(in->width - len));
+	ft_memset(&ret[i + in->space], c, count);
 	ft_strcat(&ret[in->width - len], &str[i]);
 	ft_strdel(&str);
 	return (ret);

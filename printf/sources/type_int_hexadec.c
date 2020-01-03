@@ -6,29 +6,18 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 18:55:30 by geliz             #+#    #+#             */
-/*   Updated: 2019/12/07 20:12:01 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/03 16:24:15 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-char	*ft_precision_to_int_minus_hexadec(t_info *in, char *ret, int len)
-{
-	char	*temp;
-	int		i;
-	int		j;
 
-
-}
-*/
 char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len)
 {
 	char	*temp;
 	int		i;
 	int		j;
-	
-//	if ((in->precision + 2) <= len)
-//		return (ret);
+
 	if (len == 1 && ret[0] == '0')
 	{
 		in->octotorp = 0;
@@ -38,8 +27,6 @@ char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len)
 	len = len - 2;
 	i = 2;
 	j = 2;
-/*	if (in->minus == 1)
-		return (ft_precision_to_int_minus_hexadec(in, ret, len));*/
 	if (!(temp = ft_strnew(in->precision)))
 		return (NULL);
 	temp[0] = ret[0];
@@ -54,7 +41,8 @@ char	*ft_precision_to_int_base_hexadec(t_info *in, char *ret, int len)
 	return (temp);
 }
 
-char	*ft_width_with_zero_to_hexadec_int(t_info *in, char *temp, char *ret, int len)
+char	*ft_width_with_zero_to_hexadec_int(t_info *in, char *temp, char *ret,
+			int len)
 {
 	int		i;
 	int		j;
