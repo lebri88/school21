@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 22:24:27 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/04 18:55:17 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ typedef struct		s_info
 	int			space;
 	int			octotorp;
 	int			zero;
-	int			flag;
 	int			width;
 	int			precision;
 	int			size;
@@ -47,14 +46,14 @@ typedef struct		s_info
 	int			error;
 }					t_info;
 
-typedef union 		u_float
+typedef union		u_float
 {
 	double			d;
 	struct			s_bit
 	{
-		unsigned long int	mantissa	: 52;
-        unsigned long int	exponent	: 11;
-        unsigned int		sign		: 1;
+		unsigned long int		mantissa	: 52;
+		unsigned long int		exponent	: 11;
+		unsigned int			sign		: 1;
 	}				t_bit;
 }					t_float;
 
@@ -64,8 +63,8 @@ typedef union		u_lfloat
 	struct			s_lbit
 	{
 		unsigned long long int	mantissa	: 64;
-        unsigned long int	exponent	: 15;
-        unsigned int		sign		: 1;	
+		unsigned long int		exponent	: 15;
+		unsigned int			sign		: 1;
 	}				t_lbit;
 }					t_lfloat;
 
@@ -75,13 +74,14 @@ ft_printf_hub.c
 int		ft_printf(const char *c, ...);
 t_info	*ft_create_info(t_info *in);
 int		ft_print_base(const char *c, int i);
-int		ft_readkeys_and_type(int i, t_info *info, const char *c);
+int		ft_readkeys_and_type(int i, t_info *info, const char *c, va_list ap);
+
 /*
 readkeys.c
 */
 int		ft_flags(const char *c, int i, t_info *info);
-int		ft_width(const char *c, int i, t_info *info);
-int		ft_precision(const char *c, int i, t_info *info);
+int		ft_width(const char *c, int i, t_info *info, va_list ap);
+int		ft_precision(const char *c, int i, t_info *info, va_list ap);
 int		ft_size(const char *c, int i, t_info *info);
 int		ft_content(const char *c, int i, t_info *info);
 /*
@@ -227,35 +227,31 @@ char	*ft_width_without_minus_to_float(t_info *in, char *str);
 type_float_apply_plus_space.c
 */
 char	*ft_keys_space_to_float(t_info *in, char *nbr);
-
-
-
-
-char	*ft_width_to_inf_or_nan(t_info *in, char *str);
-char	*ft_keys_to_inf(t_info *in, char *ret, unsigned int sign);
-
+/*
+type_float_long.c
+*/
 char	*ft_apply_info_to_flt_long(t_info *in, va_list ap);
-
-int		ft_binary_str_to_int(char *temp);
-
-
-
-int			ft_atoi(const char *str);
+char	*ft_check_nan_and_inf_long(t_info *in, t_lfloat d);
+/*
+ft_from_lib_newstrings.c
+*/
+char	*ft_strnew(size_t size);
+char	*ft_strdup(const char *src);
+char	*ft_strsub(const char *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+/*
+ft_from_lib_atoi_toupp.c
+*/
+int		ft_atoi(const char *str);
+int		ft_toupper(int c);
+/*
+ft_from_lib_fill_and_del_str.c
+*/
 void	*ft_memset(void *b, int c, size_t len);
-void	ft_putchar(char c);
 char	*ft_strcat(char *s1, const char *s2);
 void	ft_strdel(char **as);
-char	*ft_strdup(const char *src);
-char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
-char	*ft_strnew(size_t size);
 size_t	ft_strlen(const char *str);
-char	*ft_strsub(const char *s, unsigned int start, size_t len);
-int		ft_toupper(int c);
-
-
-//char	*ft_apply_info_to_oct(t_info *in, va_list ap);
-
 
 # include <stdio.h>
 #endif

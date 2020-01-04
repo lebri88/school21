@@ -6,28 +6,34 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 14:44:58 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/04 19:06:15 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_readkeys_and_type(int i, t_info *info, const char *c)
+int		ft_readkeys_and_type(int i, t_info *info, const char *c, va_list ap)
 {
 	if (c[i] == '%')
 	{
-		while (info->content == 0)
-		{
-			i++;
-			i = ft_flags(c, i, info);
-			if ((i = ft_width(c, i, info)) == 0)
-				return (-1);
-			if ((i = ft_precision(c, i, info)) == 0)
-				return (-1);
-			i = ft_size(c, i, info);
-			if ((i = ft_content(c, i, info)) == 0)
-				return (-1);
-		}
+		i++;
+		i = ft_flags(c, i, info);
+		if ((i = ft_width(c, i, info, ap)) == 0)
+			return (-1);
+		if ((i = ft_precision(c, i, info, ap)) == 0)
+			return (-1);
+		i = ft_size(c, i, info);
+		while (info->content == 0 && c[i] != '\0')
+			i = ft_content(c, i, info);
+/*WHILE FIND FOR US WHERE THE HELL RIGHT CONTENT IS => STRSUB(c, i, j(counter against I) => 
+check this string for other flags => 
+width = last numbers/* => 
+precision = numbers/* after '.' => 
+flags = all flags that we can find there) => 
+if CONTENT NOT FOUND return (0)*/
+
+/*		if ((i = ft_content(c, i, info)) == 0)
+			return (-1);*/
 	}
 	return (i);
 }
@@ -58,7 +64,6 @@ t_info	*ft_create_info(t_info *in)
 	in->space = 0;
 	in->octotorp = 0;
 	in->zero = 0;
-	in->flag = 0;
 	in->width = -1;
 	in->precision = -1;
 	in->size = 0;
@@ -88,9 +93,10 @@ int		ft_printf(const char *c, ...)
 		j = ft_print_base(c, i);
 		res += j;
 		i += j;
-		if ((i = ft_readkeys_and_type(i, info, c)) == -1)
+		if ((i = ft_readkeys_and_type(i, info, c, ap)) == -1)
 			return (0);
-		res = res + ft_check_and_print_content(info, ap);
+		if (info->content != 0)
+			res = res + ft_check_and_print_content(info, ap);
 	}
 	free(info);
 	return (res);

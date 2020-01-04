@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 17:12:42 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 15:57:35 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/04 17:28:32 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ char	*ft_apply_info_to_string(t_info *in, va_list ap)
 	char	*ret;
 	size_t	j;
 
+	if (in->size == l_ || in->size == ll_)
+		return (NULL);
 	str = va_arg(ap, char *);
 	if (str == NULL)
 	{

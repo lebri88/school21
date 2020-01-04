@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:41:58 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 20:30:20 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/04 14:55:15 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ char	*ft_precision_to_int(t_info *in, char *ret)
 	i = 0;
 	j = 0;
 	len = (int)ft_strlen(ret);
-	if (in->octotorp == 1 && in->precision > (len - 2) && (in->base == 'x' || in->base == 'X'))
+	if (in->octotorp == 1 && in->precision > (len - 2) && (in->base == 'x' ||
+		in->base == 'X'))
 		return (ft_precision_to_int_base_hexadec(in, ret, len));
-	i = 0;
 	if (ret[j] == '-' && in->precision > (len - 1))
 		return (ft_precision_to_int_negative(in, ret, len));
 	if (in->precision <= len)

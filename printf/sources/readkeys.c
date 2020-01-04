@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 22:04:52 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/04 19:01:31 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_content(const char *c, int i, t_info *in)
 {
-	if (c[i] == 'c')
+	if (c[i] == 'c' || c[i] == 'C')
 		in->content = char_;
 	if (c[i] == 's')
 		in->content = str_;
@@ -36,7 +36,8 @@ int		ft_content(const char *c, int i, t_info *in)
 		in->content = flt_;
 	if (c[i] == '%')
 		in->content = percent_;
-	in->content == 0 ? i = 0 : i++;
+//	if (in->content != 0)
+		i++;
 	return (i);
 }
 
@@ -62,7 +63,7 @@ int		ft_size(const char *c, int i, t_info *in)
 	return (i);
 }
 
-int		ft_precision(const char *c, int i, t_info *in)
+int		ft_precision(const char *c, int i, t_info *in, va_list ap)
 {
 	char	*prec;
 	int		j;
@@ -70,28 +71,27 @@ int		ft_precision(const char *c, int i, t_info *in)
 	j = 0;
 	if (in->precision == -1)
 	{
-		if (c[i] == '.')
+		if (c[i] == '.' && c[i + 1] == '*')
+		{
+			j = va_arg(ap, int);
+			in->precision = j > 0 ? j : 0;
+			j = 2;
+		}
+		else if (c[i] == '.')
 		{
 			i++;
 			while (c[i + j] >= '0' && c[i + j] <= '9')
 				j++;
-			in->flag = 1;
-			if (j == 0)
-				in->precision = 0;
-			else
-			{
-				if (!(prec = ft_strsub(c, i, j)))
-					return (0);
-				in->precision = ft_atoi(prec);
-				ft_strdel(&prec);
-			}
-			i = i + j;
+			if (!(prec = ft_strsub(c, i, j)))
+				return (0);
+			in->precision = j == 0 ? 0 : ft_atoi(prec);
+			ft_strdel(&prec);
 		}
 	}
-	return (i);
+	return (i + j);
 }
 
-int		ft_width(const char *c, int i, t_info *in)
+int		ft_width(const char *c, int i, t_info *in, va_list ap)
 {
 	char	*wid;
 	int		j;
@@ -103,15 +103,21 @@ int		ft_width(const char *c, int i, t_info *in)
 		{
 			while (c[i + j] >= '0' && c[i + j] <= '9')
 				j++;
-			in->flag = 1;
 			if (!(wid = ft_strsub(c, i, j)))
 				return (0);
 			in->width = ft_atoi(wid);
 			ft_strdel(&wid);
-			i = i + j;
+		}
+		else if (c[i] == '*')
+		{
+			j = va_arg(ap, int);
+			if (j < 0)
+				in->minus = 1;
+			in->width = j > 0 ? j : j * -1;
+			j = 1;
 		}
 	}
-	return (i);
+	return (i + j);
 }
 
 int		ft_flags(const char *c, int i, t_info *in)
@@ -130,7 +136,6 @@ int		ft_flags(const char *c, int i, t_info *in)
 		if (c[i] == '0')
 			in->zero = 1;
 		i++;
-		in->flag = 1;
 	}
 	return (i);
 }
