@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 20:45:33 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 22:16:00 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/06 18:06:56 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_neg_pow_cycle(char temp[25000])
 	zero = 0;
 	while (temp[i] != 0)
 	{
-		tmp = (temp[i] - '0') * 5 + ost;
+		tmp = temp[i] == '0' ? 0 + ost : (temp[i] - '0') * 5 + ost;
 		ost = tmp / 10 > 0 ? (tmp / 10) : 0;
 		temp[i] = tmp % 10 + '0';
 		i++;

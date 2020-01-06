@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:53:59 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/04 17:09:01 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/06 18:34:14 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ char	*ft_apply_info_to_char(t_info *in, va_list ap)
 	char	*temp;
 	char	*ret;
 
-	if (in->size == l_ || in->size == ll_)
+	if (in->size == L_ || in->size == LL_)
 		return (NULL);
 	c = va_arg(ap, int);
 	if (!(temp = ft_strnew(1)))
 		return (NULL);
 	temp[0] = c;
 	if (c == '\0')
-		in->content = char_null_;
+		in->content = CHAR_NULL_;
 	if (in->width > 1 && c != '\0')
 	{
 		ret = ft_width_to_string(in, temp);

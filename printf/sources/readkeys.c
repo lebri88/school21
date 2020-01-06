@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/04 19:01:31 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/06 19:17:17 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,30 @@
 int		ft_content(const char *c, int i, t_info *in)
 {
 	if (c[i] == 'c' || c[i] == 'C')
-		in->content = char_;
+		in->content = CHAR_;
 	if (c[i] == 's')
-		in->content = str_;
+		in->content = STR_;
 	if (c[i] == 'p')
-		in->content = ptr_;
+		in->content = PTR_;
 	if (c[i] == 'i' || c[i] == 'd')
-		in->content = int_;
+		in->content = INT_;
 	if (c[i] == 'u' || c[i] == 'D')
 	{
-		in->content = int_;
+		in->content = INT_;
 		in->unsign = 1;
 	}
 	if (c[i] == 'o' || c[i] == 'x' || c[i] == 'X')
 	{
-		in->content = int_;
+		in->content = INT_;
 		in->base = (int)c[i];
 	}
 	if (c[i] == 'f' || c[i] == 'F')
-		in->content = flt_;
+		in->content = FLT_;
 	if (c[i] == '%')
-		in->content = percent_;
-//	if (in->content != 0)
-		i++;
-	return (i);
+		in->content = PERCENT_;
+	if (c[i] == 'b')
+		in->content = BINAR_;
+	return (++i);
 }
 
 int		ft_size(const char *c, int i, t_info *in)
@@ -46,19 +46,19 @@ int		ft_size(const char *c, int i, t_info *in)
 	if (in->size == 0)
 	{
 		if (c[i] == 'h' && c[i + 1] == 'h')
-			in->size = hh_;
+			in->size = HH_;
 		if (c[i] == 'h' && in->size == 0)
-			in->size = h_;
+			in->size = H_;
 		if (c[i] == 'l' && c[i + 1] == 'l')
-			in->size = ll_;
+			in->size = LL_;
 		if (c[i] == 'l' && in->size == 0)
-			in->size = l_;
-		if (c[i] == 'L' && in->size == 0)
 			in->size = L_;
+		if (c[i] == 'L' && in->size == 0)
+			in->size = LBIG_;
 	}
-	if (in->size == hh_ || in->size == ll_)
+	if (in->size == HH_ || in->size == LL_)
 		return (i + 2);
-	if (in->size == h_ || in->size == l_ || in->size == L_)
+	if (in->size == H_ || in->size == L_ || in->size == LBIG_)
 		return (i + 1);
 	return (i);
 }

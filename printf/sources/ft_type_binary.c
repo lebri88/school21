@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_type_binary.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/17 16:35:07 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 19:46:52 by geliz            ###   ########.fr       */
+/*   Created: 2020/01/06 19:06:44 by geliz             #+#    #+#             */
+/*   Updated: 2020/01/06 19:43:28 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <float.h>
-#include <math.h>
-#include <stdio.h>
 
-int     main(void)
+char	*ft_apply_info_to_binary(t_info *in, va_list ap)
 {
-	int     i;
-	
-	i = 20;
-//	i = ft_printf("Lalalala, %d%% des gens qui parlent %C Ly adorent %s. Ou Presque. %d, %u, %X, %c", 100, L'Ã ', "Ly", 2, 10, 100, 'q');
-//	i = ft_printf("%jjjc", 'q');
-//	i = printf("%hhhlll.10 -llib", 125);
-	i = ft_printf("%+20j", 12500);
-    return (0);
+	long long int	nbr;
+	char			*ret;
+
+	nbr = va_arg(ap, long long int);
+	ret = ft_unsigned_ll_itoa_base(nbr, 'b');
+	in->zero = 0;
+	if (in->width != -1)
+		ret = ft_width_to_int(in, ret);
+	return (ret);
 }
- 

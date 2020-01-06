@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/04 19:06:15 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/06 18:07:56 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@ int		ft_readkeys_and_type(int i, t_info *info, const char *c, va_list ap)
 		i = ft_size(c, i, info);
 		while (info->content == 0 && c[i] != '\0')
 			i = ft_content(c, i, info);
-/*WHILE FIND FOR US WHERE THE HELL RIGHT CONTENT IS => STRSUB(c, i, j(counter against I) => 
-check this string for other flags => 
-width = last numbers/* => 
-precision = numbers/* after '.' => 
-flags = all flags that we can find there) => 
-if CONTENT NOT FOUND return (0)*/
-
-/*		if ((i = ft_content(c, i, info)) == 0)
-			return (-1);*/
 	}
 	return (i);
 }
