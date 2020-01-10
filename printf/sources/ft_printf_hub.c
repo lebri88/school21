@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 18:07:56 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/10 16:25:30 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,23 @@ int		ft_readkeys_and_type(int i, t_info *info, const char *c, va_list ap)
 	return (i);
 }
 
-int		ft_print_base(const char *c, int i)
+char	*ft_print_base(char *res, const char *c, int i, t_info *in)
 {
 	int		j;
 	char	*str;
 
 	j = 0;
+	str = NULL;
 	while (c[i + j] != '%' && c[i + j] != '\0')
 		j++;
 	if (j != 0)
-	{
 		str = ft_strsub(c, i, j);
-		write(1, str, j);
-		ft_strdel(&str);
-	}
-	return (j);
+	res = ft_strjoin_spec(res, str, in, in->position);
+	in->position = j;
+	return (res);
 }
 
-t_info	*ft_create_info(t_info *in)
+t_info	*ft_create_info(t_info *in, int symb)
 {
 	if (!in)
 		in = malloc(sizeof(t_info) * 1);
@@ -61,34 +60,54 @@ t_info	*ft_create_info(t_info *in)
 	in->content = 0;
 	in->unsign = 0;
 	in->base = 'd';
-	in->error = 0;
+	in->position = symb;
 	return (in);
+}
+
+char	*ft_printf_cycle(const char *c, t_info *in, va_list ap)
+{
+	int			count_symb;
+	char		*res;
+	int			i;
+
+	i = 0;
+	count_symb = 0;
+	res = NULL;
+	while (c[i] != '\0')
+	{
+		in = ft_create_info(in, count_symb);
+		res = ft_print_base(res, c, i, in);
+		count_symb += in->position;
+		i += in->position;
+		if ((i = ft_readkeys_and_type(i, in, c, ap)) == -1)
+			return (NULL);
+		if (in->content != 0)
+		{
+			res = ft_strjoin_spec(res, ft_check_content(in, ap), in,
+				count_symb);
+			count_symb += in->position;
+		}
+	}
+	in->position = count_symb;
+	return (res);
 }
 
 int		ft_printf(const char *c, ...)
 {
 	t_info		*info;
 	va_list		ap;
-	int			i;
-	int			j;
-	int			res;
+	char		*str;
 
-	i = 0;
-	res = 0;
 	info = NULL;
+	if (!(info = ft_create_info(info, 0)))
+		return (-1);
 	va_start(ap, c);
-	while (c[i] != '\0')
-	{
-		if (!(info = ft_create_info(info)))
-			return (-1);
-		j = ft_print_base(c, i);
-		res += j;
-		i += j;
-		if ((i = ft_readkeys_and_type(i, info, c, ap)) == -1)
-			return (0);
-		if (info->content != 0)
-			res = res + ft_check_and_print_content(info, ap);
-	}
+	str = ft_printf_cycle(c, info, ap);
+	if (!str)
+		return (0);
+	write(1, str, info->position);
+	ft_strdel(&str);
+	va_end(ap);
 	free(info);
-	return (res);
+	return (info->position);
 }

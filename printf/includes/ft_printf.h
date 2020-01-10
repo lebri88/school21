@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 19:16:06 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/10 17:56:43 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,21 @@ typedef struct		s_info
 	int				content;
 	int				unsign;
 	int				base;
-	int				error;
+	int				position;
 }					t_info;
+
+typedef struct		s_color
+{
+	char			*black;
+	char			*red;
+	char			*green;
+	char			*yellow;
+	char			*blue;
+	char			*magenta;
+	char			*cyan;
+	char			*white;
+	char			*eoc;
+}					t_color;
 
 typedef union		u_float
 {
@@ -72,10 +85,17 @@ typedef union		u_lfloat
 **ft_printf_hub.c
 */
 int					ft_printf(const char *c, ...);
-t_info				*ft_create_info(t_info *in);
-int					ft_print_base(const char *c, int i);
+char				*ft_printf_cycle(const char *c, t_info *in, va_list ap);
+t_info				*ft_create_info(t_info *in, int symb);
+char				*ft_print_base(char *res, const char *c, int i, t_info *in);
 int					ft_readkeys_and_type(int i, t_info *info, const char *c,
 						va_list ap);
+/*
+**ft_strjoin_spec.c
+*/
+char				*ft_strjoin_spec(char *base, char *arg, t_info *in,
+						int len_base);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
 /*
 **readkeys.c
 */
@@ -89,7 +109,7 @@ int					ft_content(const char *c, int i, t_info *info);
 /*
 **check_and_print_content.c
 */
-int					ft_check_and_print_content(t_info *in, va_list ap);
+char				*ft_check_content(t_info *in, va_list ap);
 int					ft_print_string_and_check_null(t_info *in, char *str);
 /*
 **type_percent.c
@@ -99,9 +119,7 @@ char				*ft_apply_info_to_percent(t_info *in);
 **type_char.c
 */
 char				*ft_apply_info_to_char(t_info *in, va_list ap);
-int					ft_print_char_null_with_width(t_info *in, char *str);
-int					ft_char_null_width_minus(t_info *in);
-int					ft_char_null_width_plus(t_info *in);
+char				*ft_apply_info_to_char_null(t_info *in);
 /*
 **type_string.c
 */
@@ -271,4 +289,8 @@ char				*ft_strcat(char *s1, const char *s2);
 void				ft_strdel(char **as);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 size_t				ft_strlen(const char *str);
+/*
+**ft_printf_bonus_hub.c
+*/
+int					ft_fprintf(int fd, const char *c, ...);
 #endif

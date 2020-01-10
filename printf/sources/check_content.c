@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_and_print_content.c                          :+:      :+:    :+:   */
+/*   check_content.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:24:29 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 19:16:12 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/10 16:33:33 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_print_string_and_check_null(t_info *in, char *str)
-{
-	int		ret;
-
-	if (!str)
-		return (0);
-	if (in->content == CHAR_NULL_)
-		return (ft_print_char_null_with_width(in, str));
-	else
-	{
-		ret = ft_strlen(str);
-		write(1, str, ret);
-		ft_strdel(&str);
-		return (ret);
-	}
-}
-
-int		ft_check_and_print_content(t_info *in, va_list ap)
+char	*ft_check_content(t_info *in, va_list ap)
 {
 	char	*str;
-	int		len;
 
 	str = NULL;
 	if (in->size == LBIG_ && in->content != FLT_)
@@ -53,6 +35,5 @@ int		ft_check_and_print_content(t_info *in, va_list ap)
 		str = ft_apply_info_to_flt_long(in, ap);
 	if (in->content == BINAR_)
 		str = ft_apply_info_to_binary(in, ap);
-	len = ft_print_string_and_check_null(in, str);
-	return (len);
+	return (str);
 }

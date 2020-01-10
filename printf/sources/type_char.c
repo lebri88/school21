@@ -6,62 +6,28 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:53:59 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 18:34:14 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/10 16:52:38 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_char_null_width_plus(t_info *in)
+char	*ft_apply_info_to_char_null(t_info *in)
 {
-	int		ret;
-	char	*temp;
+	char	*ret;
 
-	ret = in->width;
-	if (in->width > 1)
-	{
-		if (!(temp = ft_strnew(in->width - 1)))
-			return (-1);
-		temp = ft_memset(temp, ' ', in->width - 1);
-		write(1, temp, in->width - 1);
-	}
-	write(1, "\0", 1);
-	return (ret);
-}
-
-int		ft_char_null_width_minus(t_info *in)
-{
-	int		ret;
-	char	*temp;
-
-	ret = in->width;
-	write(1, "\0", 1);
-	in->width--;
-	if (in->width > 0)
-	{
-		if (!(temp = ft_strnew(in->width)))
-			return (-1);
-		temp = ft_memset(temp, ' ', in->width);
-		write(1, temp, in->width);
-	}
-	return (ret);
-}
-
-int		ft_print_char_null_with_width(t_info *in, char *str)
-{
-	int		ret;
-
-	ret = 0;
-	ft_strdel(&str);
 	if (in->width <= 1)
 	{
-		write(1, "\0", 1);
-		return (1);
+		in->width = 1;
+		return (ft_strnew(0));
 	}
+	if (!(ret = ft_strnew(in->width)))
+		return (NULL);
+	ret = ft_memset(ret, ' ', in->width);
 	if (in->minus == 1)
-		ret = ft_char_null_width_minus(in);
+		ret[0] = '\0';
 	else
-		ret = ft_char_null_width_plus(in);
+		ret[in->width - 1] = '\0';
 	return (ret);
 }
 
@@ -74,16 +40,22 @@ char	*ft_apply_info_to_char(t_info *in, va_list ap)
 	if (in->size == L_ || in->size == LL_)
 		return (NULL);
 	c = va_arg(ap, int);
-	if (!(temp = ft_strnew(1)))
-		return (NULL);
-	temp[0] = c;
-	if (c == '\0')
-		in->content = CHAR_NULL_;
-	if (in->width > 1 && c != '\0')
+	if (c != '\0')
 	{
-		ret = ft_width_to_string(in, temp);
-		ft_strdel(&temp);
-		return (ret);
+		if (!(temp = ft_strnew(1)))
+			return (NULL);
+		temp[0] = c;
+		if (in->width > 1)
+		{
+			ret = ft_width_to_string(in, temp);
+			ft_strdel(&temp);
+			return (ret);
+		}
+	}
+	if (c == '\0')
+	{
+		in->content = CHAR_NULL_;
+		temp = ft_apply_info_to_char_null(in);
 	}
 	return (temp);
 }

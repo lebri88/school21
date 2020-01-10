@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/27 17:31:29 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 22:26:19 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/10 16:38:47 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ char	*ft_precision_round_up_integ_part(char *nbr, int len, int prec)
 		ret[i] = nbr[i - ost];
 		i++;
 	}
-	ft_strdel(&nbr);
 	return (ret);
 }
 
@@ -80,6 +79,7 @@ char	*ft_precision_less_cut_str(char *nbr, int len, int prec)
 		while (++i < len + prec)
 			ret[i] = nbr[i];
 	}
+	ft_strdel(&nbr);
 	return (ret);
 }
 
