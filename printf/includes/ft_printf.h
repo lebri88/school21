@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 16:15:40 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/10 17:56:43 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/11 17:34:15 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,6 @@ typedef struct		s_info
 	int				base;
 	int				position;
 }					t_info;
-
-typedef struct		s_color
-{
-	char			*black;
-	char			*red;
-	char			*green;
-	char			*yellow;
-	char			*blue;
-	char			*magenta;
-	char			*cyan;
-	char			*white;
-	char			*eoc;
-}					t_color;
 
 typedef union		u_float
 {
@@ -293,4 +280,19 @@ size_t				ft_strlen(const char *str);
 **ft_printf_bonus_hub.c
 */
 int					ft_fprintf(int fd, const char *c, ...);
+int					ft_colorprintf(const char *c, ...);
+/*
+**bonus_colors.c
+*/
+int					ft_add_colors_to_text(char *str, t_info *in);
+char				*ft_strjoin_free(char *s1, char *s2);
+char				*ft_find_color_in_string(char *str, char *color, int len);
+/*
+**bonus_color_add_colorcode.c
+*/
+char				*ft_is_it_color(char *str, int i, t_info *in);
+char				*ft_is_it_color_part_two(char *str, int i, t_info *in);
+char				*ft_is_it_end_of_color(char *str, int i, t_info *in);
+char				*ft_colorcode_join(char *str, int i, t_info *in,
+						char *color);
 #endif

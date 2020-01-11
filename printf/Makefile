@@ -6,7 +6,7 @@
 #    By: geliz <geliz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/13 17:11:13 by geliz             #+#    #+#              #
-#    Updated: 2020/01/10 17:04:55 by geliz            ###   ########.fr        #
+#    Updated: 2020/01/11 17:37:32 by geliz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,34 +24,25 @@ SRC = $(SRC_DIR)/ft_printf_hub.c $(SRC_DIR)/check_content.c $(SRC_DIR)/readkeys.
 	  $(SRC_DIR)/type_float_apply_prec_zero.c $(SRC_DIR)/type_float_apply_prec_not_zero.c \
 	  $(SRC_DIR)/type_float_apply_plus_space.c $(SRC_DIR)/type_float_keys_to_spec.c $(SRC_DIR)/type_float_long.c \
 	  $(SRC_DIR)/ft_from_lib_newstrings.c $(SRC_DIR)/ft_from_lib_fill_and_del_str.c $(SRC_DIR)/ft_from_lib_atoi_toupp.c \
-	  $(SRC_DIR)/ft_type_binary.c $(SRC_DIR)/ft_strjoin_spec.c $(SRC_DIR)/ft_printf_bonus_hub.c
-SRC2 = main.c
-OBJ_DIR = ./obj
-LIB = ./libft/
+	  $(SRC_DIR)/ft_type_binary.c $(SRC_DIR)/ft_strjoin_spec.c $(SRC_DIR)/ft_printf_bonus_hub.c $(SRC_DIR)/bonus_colors.c \
+	  $(SRC_DIR)/bonus_color_add_colorcode.c
+OBJ_DIR = ./sources
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-.PHONY: test clean fclean re
+.PHONY: clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 		ar rc $(NAME) $(OBJ)
-LIB:
-		@make -C $(LIB)
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-		@mkdir -p $(@D)
 		@gcc -c $(FLAGS) -I$(HEADERS) $< -o $@
 
-test:
-		gcc $(FLAGS) -I$(HEADERS) $(SRC2) $(SRC)
 clean:
 		rm -rf $(OBJ)
-		rm -rf $(OBJ_DIR)
 
 fclean: clean
 		rm -f $(NAME)
-
-testclean:
-		rm a.out
 
 re: fclean all
