@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_int_base.c                                    :+:      :+:    :+:   */
+/*   type_int_octotorp_base.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 18:30:04 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/03 16:13:46 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/11 18:33:52 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*ft_octotorp_to_x_big(char *str, size_t len)
 	if (len == 1 && str[0] == '0')
 	{
 		ret = ft_strdup(str);
-		ft_strdel(&str);
 		return (ret);
 	}
 	i = 0;
@@ -44,7 +43,6 @@ char	*ft_octotorp_to_x_small(char *str, size_t len)
 	if (len == 1 && str[0] == '0')
 	{
 		ret = ft_strdup(str);
-		ft_strdel(&str);
 		return (ret);
 	}
 	i = 0;
@@ -68,7 +66,6 @@ char	*ft_octotorp_to_o(char *str, size_t len)
 	if (len == 1 && str[0] == '0')
 	{
 		ret = ft_strdup(str);
-		ft_strdel(&str);
 		return (ret);
 	}
 	i = 0;
@@ -95,5 +92,6 @@ char	*ft_octotorp_to_int(t_info *in, char *ret)
 		str = ft_octotorp_to_x_small(ret, len);
 	if (in->base == 'X')
 		str = ft_octotorp_to_x_big(ret, len);
+	ft_strdel(&ret);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 19:08:33 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/06 19:17:17 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/11 18:00:58 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_precision(const char *c, int i, t_info *in, va_list ap)
 		if (c[i] == '.' && c[i + 1] == '*')
 		{
 			j = va_arg(ap, int);
-			in->precision = j > 0 ? j : 0;
+			in->precision = j >= 0 ? j : -1;
 			j = 2;
 		}
 		else if (c[i] == '.')

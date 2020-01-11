@@ -6,7 +6,7 @@
 /*   By: geliz <geliz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:29:03 by geliz             #+#    #+#             */
-/*   Updated: 2020/01/10 16:25:30 by geliz            ###   ########.fr       */
+/*   Updated: 2020/01/11 18:49:01 by geliz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_print_base(char *res, const char *c, int i, t_info *in)
 t_info	*ft_create_info(t_info *in, int symb)
 {
 	if (!in)
-		in = malloc(sizeof(t_info) * 1);
+		in = malloc(sizeof(t_info));
 	in->minus = 0;
 	in->plus = 0;
 	in->space = 0;
@@ -97,17 +97,19 @@ int		ft_printf(const char *c, ...)
 	t_info		*info;
 	va_list		ap;
 	char		*str;
+	int			ret;
 
 	info = NULL;
 	if (!(info = ft_create_info(info, 0)))
 		return (-1);
 	va_start(ap, c);
 	str = ft_printf_cycle(c, info, ap);
-	if (!str)
-		return (0);
-	write(1, str, info->position);
+	ret = str ? info->position : 0;
+	if (ret != 0)
+		write(1, str, info->position);
 	ft_strdel(&str);
 	va_end(ap);
 	free(info);
-	return (info->position);
+	info = NULL;
+	return (ret);
 }
